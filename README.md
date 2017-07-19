@@ -4,6 +4,7 @@ An app integrated with Twitter to allow citizens to report damage in their city.
 
 ## User Story
 
+Fix my city is an app for government employees to use to track and assign damage reported around a given city. Damage is reported via Twiiter by everyday citizens
 
 ## Design
 
