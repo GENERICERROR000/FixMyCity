@@ -29,7 +29,7 @@ Government employees will be the main user of the app.
 
 ## Entity Relationship Diagram
 
-![ERD](./public/erd.jpg)
+![ERD](public/erd.jpg)
 
 ## Technology/Libraries Used
 
