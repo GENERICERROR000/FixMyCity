@@ -19,8 +19,6 @@ app.use((req, res, next) => {
 
 const Issue = require('./models/Issue')
 
-console.log(process.env);
-
 const Twitter = new twit({
   consumer_key: process.env.TWIT_CK,
   consumer_secret: process.env.TWIT_CS,
@@ -29,21 +27,19 @@ const Twitter = new twit({
   timeout_ms: 60000,  // optional HTTP request timeout to apply to all requests.
 })
 
+// ----------> END CONNECTIONS TWIITER API <----------
+var cat, dog
+Twitter.get('search/tweets', { q: '#FixMyCity', count: 1 }, function(err, data, response) {
+  cat = [data, data.statuses[0].user]
+})
+// ----------> END CONNECTIONS TWIITER API <----------
+
 // ----------> API ROUTES <----------
 // Home/Root Page
+
 app.get('/', (req, res) => {
-  res.send("WHY YOU HERE - DIS API HOMEPAGE")
+  res.json(cat)
 })
-
-
-//
-//  search twitter for all tweets containing the word 'banana' since July 11, 2011
-//
-Twitter.get('search/tweets', { q: '#FixMyCity', count: 1 }, function(err, data, response) {
-  console.log(data, data.statuses[0].user)
-})
-
-
 
 
 // GET Issues
