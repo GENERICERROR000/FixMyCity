@@ -39,5 +39,5 @@ _Server (will be doing server-side routing)_
     * MongoDB
     * Mongoose
   2. Packeges
-    * Twitter ([Twitter API](https://www.npmjs.com/package/twitter))
+    * Twitter ([Twitter API](https://github.com/desmondmorris/node-twitter))
     * Google Map React ([Google Maps API](https://www.npmjs.com/package/google-map-react))
