@@ -10,15 +10,13 @@ Fix my city is an app for government employees to use to track and assign damage
 
 Government employees will be the main user of the app.
 
-
 ### Citizen
 
-
-
-
-
-
-
+Will need standard format for posts:
+  * Image (not required)
+  * Body Content
+    * What needs repair
+    * Severity ratingß
 
 ## Design
 
@@ -29,7 +27,7 @@ Government employees will be the main user of the app.
 
 ## Entity Relationship Diagram
 
-![ERD](./public/ERD.jpg)
+![ERD](./githubpublic/ERD.jpg)
 
 ## Technology/Libraries Used
 
