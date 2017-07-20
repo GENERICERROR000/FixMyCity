@@ -17,7 +17,6 @@ app.use((req, res, next) => {
   next()
 })
 
-// TODO: FIGURE OUT SITE STREAMING - CURRENTLY NOT WORKING
 const Twitter = new twit({
   consumer_key: process.env.TWIT_CK,
   consumer_secret: process.env.TWIT_CS,
@@ -58,13 +57,7 @@ stream.on('tweet', function(tweet) {
 // ----------> API ROUTES <----------
 // Home/Root Page
 app.get('/', (req, res) => {
-  Issue.find((err, issues) => {
-    if (err) {
-      throw err
-    } else {
-      res.json(issues)
-    }
-  })
+  res.send("THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)")
 })
 
 
@@ -79,7 +72,7 @@ app.get('/api/v1/issues', (req, res) => {
   })
 })
 
-//  404 Error
+// 404 Error
 app.use((req, res) => {
   var err = new Error('Not Found')
   err.status = 404
@@ -87,14 +80,9 @@ app.use((req, res) => {
 })
 // ----------> END API ROUTES <----------
 
-// Start Server
 app.listen(3000, () => {
   console.log('Server started on port 3000...')
 })
-
-
-
-
 
 
 
