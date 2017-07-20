@@ -1,3 +1,30 @@
+***
+***
+
+# TODO
+
+## Implement
+
+1. Redux
+2. Server Side Routing (SSR)
+3. Node
+  * JWT for API
+  * Auth for User
+4. Separate routes and functions out of Server.js
+
+## Logic
+
+1. Create issue for Issue, before persist to DB
+2. Increase number of hits for specific Issue
+3. Create array of Twitter users who submit same issue (after first submission of issue)
+
+## Features
+
+1. Live feed of Tweets
+
+***
+***
+
 # FIX MY CITY
 
 An app integrated with Twitter to allow citizens to report damage in their city.
@@ -27,7 +54,7 @@ Will need standard format for posts:
 
 ## Entity Relationship Diagram
 
-![ERD](./githubpublic/ERD.jpg)
+![ERD](./ERD.jpg)
 
 ## Technology/Libraries Used
 

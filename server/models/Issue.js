@@ -21,7 +21,7 @@ const issueSchema = mongoose.Schema({
   //   type: String,
   //   required: true
   // },
-  location: { // unclear if this will work
+  location: {
     type: {type: String},
     coordinates: []
   },
