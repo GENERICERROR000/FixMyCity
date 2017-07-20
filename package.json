@@ -1,0 +1,16 @@
+{
+  "name": "FixMyCity",
+  "version": "1.0.0",
+  "description": "API and SSR for FixMyCity App",
+  "main": "server.js",
+  "repository": "git@github.com:nkernis/FixMyCity.git",
+  "author": "<nkernis> <<nkernis@gmail.com>>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.3",
+    "twit": "^2.2.9"
+  }
+}
