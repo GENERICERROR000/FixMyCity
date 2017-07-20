@@ -17,28 +17,54 @@ app.use((req, res, next) => {
   next()
 })
 
-const Issue = require('./models/Issue')
-
+// TODO: FIGURE OUT SITE STREAMING - CURRENTLY NOT WORKING
 const Twitter = new twit({
   consumer_key: process.env.TWIT_CK,
   consumer_secret: process.env.TWIT_CS,
   access_token: process.env.TWIT_AT,
   access_token_secret: process.env.TWIT_ATS,
-  timeout_ms: 60000,  // optional HTTP request timeout to apply to all requests.
+  timeout_ms: 60000
 })
 
+const Issue = require('./models/Issue')
+
 // ----------> END CONNECTIONS TWIITER API <----------
-var cat, dog
-Twitter.get('search/tweets', { q: '#FixMyCity', count: 1 }, function(err, data, response) {
-  cat = [data, data.statuses[0].user]
+var stream = Twitter.stream('statuses/filter', {track: '#FixMyCity'})
+
+stream.on('tweet', function(tweet) {
+  let issue = {
+    posted_by: tweet.user.screen_name,
+    posted_by_id: tweet.user.id,
+    posted_on: tweet.created_at,
+    tweet_content: tweet.text,
+    location: {
+      type: "Point",
+      coordinates: tweet.geo.coordinates
+    },
+    status: "new",
+    hits: 1,
+    report: ''
+  }
+
+  Issue.create(issue, (err, newIssue) => {
+    if (err) {
+      throw err
+    }
+  })
 })
+
 // ----------> END CONNECTIONS TWIITER API <----------
 
 // ----------> API ROUTES <----------
 // Home/Root Page
-
 app.get('/', (req, res) => {
-  res.json(cat)
+  Issue.find((err, issues) => {
+    if (err) {
+      throw err
+    } else {
+      res.json(issues)
+    }
+  })
 })
 
 
