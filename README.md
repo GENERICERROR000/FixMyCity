@@ -14,13 +14,14 @@
 
 ## Logic
 
-1. Create issue for Issue, before persist to DB
+1. Create issue for Issue, before persist to DB (parse body content)
 2. Increase number of hits for specific Issue
 3. Create array of Twitter users who submit same issue (after first submission of issue)
 
 ## Features
 
 1. Live feed of Tweets
+2. Maps Maps Maps
 
 ## STRETCH
   1. Server Side Routing (Branch: "ssr")
