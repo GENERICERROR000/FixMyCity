@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const twit = require('twit')
-const react = require('react');
+// const react = require('react')
+// const ReactDOMServer = require('react-dom/server')
+// const index = require('./public/index.html')
 
 mongoose.connect('mongodb://localhost:27017/fixmycitydb')
 

@@ -20,7 +20,8 @@
   },
   "private": true,
   "devDependencies": {
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "webpack": "^2.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
