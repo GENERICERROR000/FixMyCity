@@ -57,7 +57,7 @@ stream.on('tweet', (tweet) => {
 // ----------> API ROUTES <----------
 // Home/Root Page
 app.get('/', (req, res) => {
-  res.send("THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)")
+  res.send("<h1>THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)</h1>")
 })
 
 
