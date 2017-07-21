@@ -30,7 +30,7 @@ const Issue = require('./models/Issue')
 // ----------> END CONNECTIONS TWIITER API <----------
 var stream = Twitter.stream('statuses/filter', {track: '#FixMyCity'})
 
-stream.on('tweet', function(tweet) {
+stream.on('tweet', (tweet) => {
   let issue = {
     posted_by: tweet.user.screen_name,
     posted_by_id: tweet.user.id,
