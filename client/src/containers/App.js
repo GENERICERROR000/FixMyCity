@@ -9,11 +9,20 @@ class App extends Component {
     this.props.getIssues()
   }
 
+  loading = () => {
+    if (this.props.issues[0]) {
+      return this.props.issues[0].name
+    } else {
+      return "Loading..."
+    }
+  }
+
   render() {
-    console.log(this.props);
+    console.log(this.props)
     return (
       <div>
         <h1>FixMyCity</h1>
+        <h2>{this.loading()}</h2>
       </div>
     )
   }
