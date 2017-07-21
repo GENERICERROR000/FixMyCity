@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const config = require('./config')
 
 const index = require('./routes/index')
+const authenticate = require('./routes/authenticate')
 const users = require('./routes/users')
 const issues = require('./routes/issues')
 const Twitter = new twit({
@@ -43,36 +44,7 @@ const Issue = require('./models/Issue')
 // ----------> API ROUTES <----------
 // ##### UNPROTECTED ROUTES #####
 app.use('/', index)
-
-app.post('/api/v1/authenticate', (req, res) => {
-  User.findOne({
-    email: req.body.email
-  }, (err, user) => {
-    console.log(user);
-    if (err) {
-      throw err
-    } else if (!user) {
-      res.json({
-        success: false,
-        message: 'Authentication failed. User not found.'
-      })
-    } else if (user) {
-      if (user.password != req.body.password) {
-        res.json({
-          success: false,
-          message: 'Authentication failed. Wrong password.'
-        })
-      } else {
-        var token = jwt.sign(user, app.get('secret'))
-
-        res.json({
-          success: true,
-          token: token
-        })
-      }
-    }
-  })
-})
+app.use('/api/v1/authenticate', authenticate)
 
 app.use((req, res, next) => {
   var token = req.headers['x-access-token']

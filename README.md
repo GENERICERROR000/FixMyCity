@@ -7,8 +7,9 @@
 
 1. ~~Redux~~
 2. Node
-  * JWT for API
+  * ~~JWT for API~~
   * Auth for User
+4. Implement JWT and Auth for client
 3. React-Router (make sure working with Redux)
 4. Make sure Async fetch works with React-Router and Redux
 

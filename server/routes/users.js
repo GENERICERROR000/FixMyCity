@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
 
-// TODO: THIS IS NOT CORRECT YET - CURRENTLY WILL GRAB ALL USERS
+// TODO: DELETE THIS ONCE HAVE THINGS WORKING
 router.get('/', (req, res) => {
   User.find((err, issues) => {
     if (err) {
