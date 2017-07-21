@@ -22,7 +22,7 @@
 1. Live feed of Tweets
 
 ## STRETCH
-  1. Server Side Routing (SSR)
+  1. Server Side Routing (Branch: "ssr")
     * (https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/)
     * (https://www.codementor.io/mz026/server-side-rendering-with-redux-and-react-router-8s8en3o7p)
     * (https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md)
