@@ -9,7 +9,9 @@
 2. Node
   * JWT for API
   * Auth for User
-3. Separate routes and functions out of Server.js
+3. React-Router (make sure working with Redux)
+4. Make sure Async fetch works with React-Router and Redux
+5. Separate routes and functions out of Server.js
 
 ## Logic
 
