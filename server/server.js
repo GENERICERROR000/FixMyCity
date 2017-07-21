@@ -4,9 +4,15 @@ const mongoose = require('mongoose')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const twit = require('twit');
+const twit = require('twit')
 
-mongoose.connect('mongodb://localhost:27017/fixmycitydb')
+// ----------> API ROUTES <----------
+const index = require('./routes/index');
+const issues = require('./routes/issues');
+
+app.use('/', index);
+app.use('/api/v1/issues', issues);
+// ----------> END API ROUTES <----------
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -19,6 +25,11 @@ app.use((req, res, next) => {
   next()
 })
 
+// CONNECT TO DB
+mongoose.connect('mongodb://localhost:27017/fixmycitydb')
+
+
+// ----------> CONNECTIONS TWIITER API <----------
 const Twitter = new twit({
   consumer_key: process.env.TWIT_CK,
   consumer_secret: process.env.TWIT_CS,
@@ -27,9 +38,6 @@ const Twitter = new twit({
   timeout_ms: 60000
 })
 
-const Issue = require('./models/Issue')
-
-// ----------> END CONNECTIONS TWIITER API <----------
 var stream = Twitter.stream('statuses/filter', {track: '#FixMyCity'})
 
 stream.on('tweet', (tweet) => {
@@ -53,76 +61,16 @@ stream.on('tweet', (tweet) => {
     }
   })
 })
-
 // ----------> END CONNECTIONS TWIITER API <----------
 
-// ----------> API ROUTES <----------
-// Home/Root Page
-app.get('/', (req, res) => {
-  res.send("<h1>THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)</h1>")
-})
-
-// GET Issues
-app.get('/api/v1/issues', (req, res) => {
-  Issue.find((err, issues) => {
-    if (err) {
-      throw err
-    } else {
-      res.json(issues)
-    }
-  })
-})
-
-// 404 Error
+// 404 ERROR
 app.use((req, res) => {
   var err = new Error('Not Found')
   err.status = 404
   res.json(err)
 })
-// ----------> END API ROUTES <----------
 
+// START SERVER
 app.listen(3000, () => {
   console.log('Server started on port 3000...')
 })
-
-
-
-// NOTE: These are routes for later
-
-// // POST Book
-// app.post('/api/v1/issues/new', (req, res) => {
-//   let book = req.body
-//
-//   Book.create(book, (err, newBook) => {
-//     if (err) {
-//       throw err
-//     } else {
-//       Book.find((err, books) => {
-//         if (err) {
-//           throw err
-//         } else {
-//           res.json(books)
-//         }
-//       })
-//     }
-//   })
-// })
-//
-// // DELETE Book
-// app.delete('/api/v1/books/delete', (req, res) => {
-//   let bookID = req.body.id
-//
-//   Book.remove({_id: bookID}, (err) => {
-//     if (err) {
-//       throw err
-//     } else {
-//       Book.find((err, books) => {
-//         if (err) {
-//           throw err
-//         } else {
-//           res.json(books)
-//         }
-//       })
-//     }
-//   })
-// })
