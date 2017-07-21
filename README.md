@@ -5,12 +5,11 @@
 
 ## Implement
 
-1. Redux
-2. Server Side Routing (SSR)
-3. Node
+1. ~~Redux~~
+2. Node
   * JWT for API
   * Auth for User
-4. Separate routes and functions out of Server.js
+3. Separate routes and functions out of Server.js
 
 ## Logic
 
@@ -21,6 +20,12 @@
 ## Features
 
 1. Live feed of Tweets
+
+## STRETCH
+  1. Server Side Routing (SSR)
+    * (https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/)
+    * (https://www.codementor.io/mz026/server-side-rendering-with-redux-and-react-router-8s8en3o7p)
+    * (https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md)
 
 ***
 ***
