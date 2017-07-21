@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const logger = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const twit = require('twit');
 
 mongoose.connect('mongodb://localhost:27017/fixmycitydb')
 
+app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
@@ -59,7 +61,6 @@ stream.on('tweet', (tweet) => {
 app.get('/', (req, res) => {
   res.send("<h1>THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)</h1>")
 })
-
 
 // GET Issues
 app.get('/api/v1/issues', (req, res) => {
