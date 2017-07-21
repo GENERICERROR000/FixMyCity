@@ -5,7 +5,7 @@
 
 ## Implement
 
-1. Redux
+1. ~~Redux~~
 2. Server Side Routing (SSR)
 3. Node
   * JWT for API

@@ -3,7 +3,8 @@ const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const twit = require('twit');
+const twit = require('twit')
+const react = require('react');
 
 mongoose.connect('mongodb://localhost:27017/fixmycitydb')
 
@@ -57,7 +58,7 @@ stream.on('tweet', function(tweet) {
 // ----------> API ROUTES <----------
 // Home/Root Page
 app.get('/', (req, res) => {
-  res.send("THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)")
+  res.send("<h1>THIS IS A TEMPORARY HOMEPAGE - FUCK FUCKETY FUCKER FUCK :)</h1>")
 })
 
 
