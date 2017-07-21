@@ -11,18 +11,25 @@ class App extends Component {
 
   loading = () => {
     if (this.props.issues[0]) {
-      return this.props.issues[0].name
+      return this.props.issues.map((issue, i) => {
+        return (
+          <div key={i}>
+            <h2>{issue.posted_by}</h2>
+            <h4>{issue.posted_on}</h4>
+            <h4>{issue.tweet_content}</h4>
+          </div>
+        )
+      })
     } else {
       return "Loading..."
     }
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>FixMyCity</h1>
-        <h2>{this.loading()}</h2>
+        {this.loading()}
       </div>
     )
   }
