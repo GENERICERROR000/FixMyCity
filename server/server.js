@@ -1,24 +1,30 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const logger = require('morgan')
+// Libraries
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const twit = require('twit')
+const express = require('express')
 const jwt = require('jsonwebtoken')
-const config = require('./config')
+const logger = require('morgan')
+const mongoose = require('mongoose')
 
-const index = require('./routes/index')
+// Files
 const authenticate = require('./routes/authenticate')
-const users = require('./routes/users')
+const config = require('./configs/config')
+const index = require('./routes/index')
 const issues = require('./routes/issues')
-const Twitter = new twit({
-  consumer_key: process.env.TWIT_CK,
-  consumer_secret: process.env.TWIT_CS,
-  access_token: process.env.TWIT_AT,
-  access_token_secret: process.env.TWIT_ATS,
-  timeout_ms: 60000
-})
+const twit = require('./configs/twit_config')
+const users = require('./routes/users')
+
+// TODO: REMOVE MODELS FROM SERVER FILE
+// Models
+const User = require('./models/User')
+
+// Connect To DB
+mongoose.connect(config.database)
+
+// ----------> APP SETUP <----------
+const app = express()
+
+app.set('secret', config.secret) // secret variable
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -30,20 +36,13 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'content-type, x-access-token')
   next()
 })
-
-app.set('secret', config.secret) // secret variable
-
-// CONNECT TO DB
-mongoose.connect(config.database)
-
-// ----------> MODELS <----------
-const User = require('./models/User')
-const Issue = require('./models/Issue')
-// ----------> END MODELS <----------
+// ----------> END APP SETUP <----------
 
 // ----------> API ROUTES <----------
 // ##### UNPROTECTED ROUTES #####
 app.use('/', index)
+// move down later
+app.use('/api/v1/issues', issues)
 app.use('/api/v1/authenticate', authenticate)
 
 app.use((req, res, next) => {
@@ -69,7 +68,7 @@ app.use((req, res, next) => {
 
 // ##### PROTECTED ROUTES #####
 app.use('/users', users)
-app.use('/api/v1/issues', issues)
+// app.use('/api/v1/issues', issues)
 
 // 404 ERROR
 app.use((req, res) => {
@@ -79,33 +78,10 @@ app.use((req, res) => {
 })
 // ----------> END API ROUTES <----------
 
-// ----------> CONNECTIONS TWIITER API <----------
-var stream = Twitter.stream('statuses/filter', {track: '#FixMyCity'})
+// Start Connection To Twitter API
+twit()
 
-stream.on('tweet', (tweet) => {
-  let issue = {
-    posted_by: tweet.user.screen_name,
-    posted_by_id: tweet.user.id,
-    posted_on: tweet.created_at,
-    tweet_content: tweet.text,
-    location: {
-      type: "Point",
-      coordinates: tweet.geo.coordinates
-    },
-    status: "new",
-    hits: 1,
-    report: ''
-  }
-
-  Issue.create(issue, (err, newIssue) => {
-    if (err) {
-      throw err
-    }
-  })
-})
-// ----------> END CONNECTIONS TWIITER API <----------
-
-// START SERVER
+// Start Server
 app.listen(config.port, () => {
   console.log('Server started on port 3000...')
 })
