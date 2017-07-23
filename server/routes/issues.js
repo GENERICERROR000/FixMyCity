@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     if (err) {
       throw err
     } else {
-      res.json(issues)
+      res.send(issues)
     }
   })
 })

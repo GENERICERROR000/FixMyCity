@@ -7,16 +7,9 @@ const logger = require('morgan')
 const mongoose = require('mongoose')
 
 // Files
-const authenticate = require('./routes/authenticate')
 const config = require('./configs/config')
-const index = require('./routes/index')
-const issues = require('./routes/issues')
+const router = require('./routes/index');
 const twit = require('./configs/twit_config')
-const users = require('./routes/users')
-
-// TODO: REMOVE MODELS FROM SERVER FILE
-// Models
-const User = require('./models/User')
 
 // Connect To DB
 mongoose.connect(config.database)
@@ -38,45 +31,8 @@ app.use((req, res, next) => {
 })
 // ----------> END APP SETUP <----------
 
-// ----------> API ROUTES <----------
-// ##### UNPROTECTED ROUTES #####
-app.use('/', index)
-// move down later
-app.use('/api/v1/issues', issues)
-app.use('/api/v1/authenticate', authenticate)
-
-app.use((req, res, next) => {
-  var token = req.headers['x-access-token']
-  if (token) {
-    jwt.verify(token, app.get('secret'), (err, decoded) => {
-      if (err) {
-        return res.json({
-          success: false,
-          message: 'Failed to authenticate token.' })
-      } else {
-        req.decoded = decoded
-        next()
-      }
-    })
-  } else {
-    return res.status(403).send({
-      success: false,
-      message: 'No token provided.'
-    })
-  }
-})
-
-// ##### PROTECTED ROUTES #####
-app.use('/users', users)
-// app.use('/api/v1/issues', issues)
-
-// 404 ERROR
-app.use((req, res) => {
-  var err = new Error('Not Found')
-  err.status = 404
-  res.json(err)
-})
-// ----------> END API ROUTES <----------
+// Initiate Routes
+router(app)
 
 // Start Connection To Twitter API
 twit()
