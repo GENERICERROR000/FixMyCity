@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Navbar from '../components/navbar'
 import Signin from '../components/auth/signin'
 import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
@@ -10,6 +11,7 @@ export default class App extends Component {
   render () {
     return (
       <Router>
+        <Navbar />
         <div>
           <Route path='/' component={Issues} />
           <Route path='/signin' component={Signin} />

@@ -1,62 +1,69 @@
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
-import * as actions from '../../actions'
-import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { signinUser } as actions from '../../actions/index'
 
 class Signin extends Component {
-  //add the router object to this.context to allow for redirects
+  state = {
+    email: '',
+    password: ''
+  }
+
   static contextTypes = {
     router: PropTypes.object
   }
+
   componentWillUpdate(nextProps) {
-    console.log("updating signin", nextProps, this.context)
     if (nextProps.authenticated) {
       this.context.router.history.push('/')
     }
   }
-  handleFormSubmit ({ email, password }) {
-    // action creator dispatching creditionals to validate on server
-    this.props.signinUser({ email, password })
+
+  changeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleFormSubmit = () => {
+    this.props.signinUser({ this.state.email, this.state.password })
   }
 
   renderAlert () {
     if (this.props.errorMessage) {
       return (
-        <div className='alert alert-danger'>
-          <strong>Oops!</strong> {this.props.errorMessage}
+        <div>
+          <strong>
+            {this.props.errorMessage}
+          </strong>
         </div>
       )
     }
   }
 
   render () {
-    const { handleSubmit, fields: { email, password }} = this.props
     return (
       <div>
-        <Link to='/'>Home</Link>
-        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <fieldset className='form-group'>
-            <label>Email:</label>
-            <input {...email} className='form-control' />
-          </fieldset>
-          <fieldset className='form-group'>
-            <label>Password:</label>
-            <input {...password} type='password' className='form-control' />
-          </fieldset>
-          {this.renderAlert()}
-          <button action='submit' className='btn btn-primary'>Sign in</button>
-        </form>
+        <input type='text' name='email' value={this.state.email} onChange={this.changeHandler} placeholder='Email' />
+        <input type='text' name='password' value={this.state.password} onChange={this.changeHandler} placeholder='Password' />
+        {this.renderAlert()}
+        <button onClick={this.handleFormSubmit}>Sign In</button>
       </div>
     )
   }
 }
 
-function mapStateToProps (state) {
-  return { errorMessage: state.auth.error, authenticated: state.auth.authenticated }
+const mapStateToProps = (state) => {
+  return {
+    errorMessage: state.auth.error,
+    authenticated: state.auth.authenticated }
 }
 
-export default reduxForm({
-  form: 'signin',
-  fields: ['email', 'password']
-}, mapStateToProps, actions)(Signin)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    signinUser: signinUser
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)

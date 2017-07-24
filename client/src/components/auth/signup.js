@@ -1,89 +1,74 @@
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
-import * as actions from '../../actions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
+import { signupUser } as actions from '../../actions/index'
 
 class Signup extends Component {
+  state = {
+    email: '',
+    password: '',
+    passwordConfirm: ''
+  }
+
   static contextTypes = {
     router: PropTypes.object
   }
+
   componentWillUpdate(nextProps) {
-    console.log("updating signin", nextProps, this.context)
     if (nextProps.authenticated) {
-      this.context.router.history.push('/feature')
+      this.context.router.history.push('/')
     }
   }
-  handleFormSubmit (formProps) {
-    // Call action creator to sign up the user
-    this.props.signupUser(formProps)
+
+  changeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleFormSubmit = () => {
+    if (this.state.password !== this.state.passwordConfirm) {
+      // TODO: DISPLAY ERROR THAT FIELDS DO NOT MATCH
+    }
+
+    this.props.signupUser({ this.state.email, this.state.password })
   }
 
   renderAlert () {
     if (this.props.errorMessage) {
       return (
-        <div className='alert alert-danger'>
-          <strong>Oops!</strong> {this.props.errorMessage}
+        <div>
+          <strong>
+            {this.props.errorMessage}
+          </strong>
         </div>
       )
     }
   }
 
   render () {
-    const { handleSubmit, fields: { email, password, passwordConfirm }} = this.props
-    console.log(this.props, email)
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <fieldset className='form-group'>
-          <label>Email:</label>
-          <input className='form-control' {...email} />
-          {email.touched && email.error && <div className='error'>{email.error}</div>}
-        </fieldset>
-        <fieldset className='form-group'>
-          <label>Password:</label>
-          <input className='form-control' {...password} type='password' />
-          {password.touched && password.error && <div className='error'>{password.error}</div>}
-        </fieldset>
-        <fieldset className='form-group'>
-          <label>Confirm Password:</label>
-          <input className='form-control' {...passwordConfirm} type='password' />
-          {passwordConfirm.touched && passwordConfirm.error && <div className='error'>{passwordConfirm.error}</div>}
-        </fieldset>
+      <div>
+        <input type='text' name='email' value={this.state.email} onChange={this.changeHandler} placeholder='Email' />
+        <input type='password' name='password' value={this.state.password} onChange={this.changeHandler} placeholder='Password' />
+        <input type='password' name='passwordConfirm' value={this.state.passwordConfirm} onChange={this.changeHandler} placeholder='Confirm Password' />
         {this.renderAlert()}
-        <button action='submit' className='btn btn-primary'>Sign up!</button>
-      </form>
+        <button onClick={this.handleFormSubmit}>Sign Up</button>
+      </div>
     )
   }
-}
 
-function validate (formProps) {
-  const errors = {}
-
-  if (!formProps.email) {
-    errors.email = 'Please enter an email'
-  }
-
-  if (!formProps.password) {
-    errors.password = 'Please enter a password'
-  }
-
-  if (!formProps.passwordConfirm) {
-    errors.passwordConfirm = 'Please enter a password confirmation'
-  }
-
-  if (formProps.password !== formProps.passwordConfirm) {
-    errors.password = 'Passwords must match'
-  }
-
-  return errors
 }
 
 function mapStateToProps (state) {
   return { errorMessage: state.auth.error }
 }
 
-export default reduxForm({
-  form: 'signup',
-  fields: ['email', 'password', 'passwordConfirm'],
-  validate
-}, mapStateToProps, actions)(Signup)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    signupUser: signupUser
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
