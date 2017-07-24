@@ -14,3 +14,5 @@ export default (state = [], action) => {
       return state
   }
 }
+
+// TODO: REFACTOR TO HAVE ISSUES NEST IN ISSUES OBJ - OR NO?
