@@ -1,44 +1,37 @@
 const express = require('express')
-const router = express.Router()
 const jwt = require('jsonwebtoken')
-const User = require('../../models/User')
+const config = require('../../configs/config')
+const User = require('../../models/user')
+const router = express.Router()
 
-router.post('/api/v1/authenticate', (req, res) => {
-  User.findOne({
-    email: req.body.email
-  }, (err, user) => {
-    if (err) {
-      throw err // TODO: CHANGE TO SENDING CORRECT ERROR BACK TO CLIENT
-    } else if (!user) {
-      res.send({
-        success: false,
-        message: 'User not found.'
-      })
-    } else if (user) {
-      if (user.comparePassword(req.body.password, function (err, isMatch) {
-        if (err) {
-          throw err // TODO: CHANGE TO SENDING CORRECT ERROR BACK TO CLIENT
-        }
-        if (!isMatch) {
-          return false
-        }
-        return true
-        })) {
-          res.send({
-            success: false,
-            message: 'Incorrect password.'
-          })
-        }
-      } else {
-        const token = jwt.sign(user, app.get('secret'))
-
-        res.send({
-          success: true,
-          token: token
-        })
-      }
+router.post('/', (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+  console.log("E:", email)
+  console.log("P:", password);
+  if (!email || !password) {
+    console.log("WHY")
+    return res.status(422).send({
+      error: 'You must provide email and password'
     })
   }
-)
+
+  User.findOne({ email: email }, (err, existingUser) => {
+    if (err) { return next(err) } // TODO: WHAT TO DO ABOUT THESES ERRORS (SAME IN SIGNIN)
+
+    if (!existingUser) {
+      return res.status(422).send({
+        error: 'User not Found'
+      })
+    }
+
+    const token = jwt.sign(existingUser, config.secret)
+
+    res.send({
+      success: true,
+      token: token
+    })
+  })
+})
 
 module.exports = router

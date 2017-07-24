@@ -5,6 +5,7 @@ import Signin from '../components/auth/signin'
 import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
 import RequireAuth from '../components/auth/require_auth'
+import Home from '../components/home'
 import Issues from '../components/issues'
 
 export default class App extends Component {
@@ -12,8 +13,8 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-        <Navbar />
-          <Route exact path='/' component={Issues} />
+          <Route path='/' component={Navbar} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/signin' component={Signin} />
           <Route exact path='/signout' component={Signout} />
           <Route exact path='/signup' component={Signup} />
@@ -23,5 +24,3 @@ export default class App extends Component {
     )
   }
 }
-
-// TODO: CHANGE ROOT PATH TO REAL HOMEPAGE

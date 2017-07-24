@@ -33,5 +33,5 @@ const issueSchema = mongoose.Schema({
   report: String
 })
 
-const Issue = mongoose.model('Issue', issueSchema)
+const Issue = mongoose.model('issue', issueSchema)
 module.exports = Issue

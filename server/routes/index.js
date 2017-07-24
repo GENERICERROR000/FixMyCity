@@ -8,8 +8,8 @@ const issues = require('./issues')
 module.exports = function (app) {
   // ##### UNPROTECTED ROUTES #####
   app.use('/', home)
-  app.use('/api/v1/signup', signup)
   app.use('/api/v1/signin', signin)
+  app.use('/api/v1/signup', signup)
 
   // ##### PROTECTED ROUTES #####
   // Authenticate Routes

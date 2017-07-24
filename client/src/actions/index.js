@@ -1,6 +1,5 @@
 // TODO: BEAK UP INTO SEPARATE ACTION FILES
 // TODO: DO THE ".catch()"'S  ACTUALLY WORK?
-// TODO: ##### MAKE SURE AXIOS ACTIONS ARE SENDING JWT!!! #####
 
 import axios from 'axios'
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DID_GET_ISSUE } from './action_types'

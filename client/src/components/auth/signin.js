@@ -57,7 +57,7 @@ class Signin extends Component {
 const mapStateToProps = (state) => {
   return {
     errorMessage: state.error,
-    authenticated: state.authenticated }
+    authenticated: state.auth.authenticated }
 }
 
 const mapDispatchToProps = (dispatch) => {

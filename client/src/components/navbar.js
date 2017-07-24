@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderLinks () {
+    console.log(this.props.authenticated)
     if (this.props.authenticated) {
       return (
-        <li>
-          <Link to='/signout'>Sign Out</Link>
-        </li>
+        <div>
+          <li key={1}>
+            <Link to='/signout'>Sign Out</Link>
+          </li>
+          <li key={2}>
+            <Link to='/issues'>Issues</Link>
+          </li>
+        </div>
       )
     } else {
       return (
@@ -38,7 +44,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authenticated: state.authenticated
+    authenticated: state.auth.authenticated
   }
 }
 
