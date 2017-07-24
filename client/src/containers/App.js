@@ -1,48 +1,25 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { getIssues } from '../actions/index'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Signin from '../components/auth/signin'
+import Signout from '../components/auth/signout'
+import Signup from '../components/auth/signup'
+import RequireAuth from '../components/auth/require_auth'
+import Issues from '../components/issues'
 
-class App extends Component {
-
-  componentWillMount() {
-    this.props.getIssues()
-  }
-
-  loading = () => {
-    if (this.props.issues[0]) {
-      return this.props.issues.map((issue, i) => {
-        return (
-          <div key={i}>
-            <h2>{issue.posted_by}</h2>
-            <h4>{issue.posted_on}</h4>
-            <h4>{issue.tweet_content}</h4>
-          </div>
-        )
-      })
-    } else {
-      return "Loading..."
-    }
-  }
-
-  render() {
+export default class App extends Component {
+  render () {
     return (
-      <div>
-        <h1>FixMyCity</h1>
-        {this.loading()}
-      </div>
+      <Router>
+        <div>
+          <Route path='/' component={Issues} />
+          <Route path='/signin' component={Signin} />
+          <Route path='/signout' component={Signout} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/issues' component={RequireAuth(Issues)} />
+        </div>
+      </Router>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {issues: state.issues}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getIssues: getIssues
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+// TODO: CHANGE ROOT PATH TO REAL HOMEPAGE

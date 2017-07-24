@@ -1,15 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './containers/App'
-import registerServiceWorker from './registerServiceWorker'
-import Reducers from './reducers/index'
-import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
-import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
+import reduxThunk from 'redux-thunk'
+import App from './containers/app'
+import registerServiceWorker from './registerServiceWorker'
+import reducers from './reducers/index'
+import { AUTH_USER} from './actions/types'
 
-const middleware = applyMiddleware(thunk)
+const middleware = applyMiddleware(reduxThunk)
 
-let store = createStore(Reducers, middleware)
+const store = createStore(reducers, middleware)
+
+const token = localStorage.getItem('token')
+if (token) {
+  store.dispatch({ type: AUTH_USER })
+}
 
 ReactDOM.render(
   <Provider store={store}>

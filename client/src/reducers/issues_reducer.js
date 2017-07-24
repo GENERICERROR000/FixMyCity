@@ -10,7 +10,7 @@ export default (state = [], action) => {
       return [...state, ...action.payload]
     case DID_GET_ISSUE:
       return [...state, ...action.payload]
-    default:
-      return state
   }
+  
+  return state
 }
