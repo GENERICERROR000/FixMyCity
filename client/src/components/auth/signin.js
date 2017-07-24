@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { signinUser } as actions from '../../actions/index'
+import { signinUser } from '../../actions/index'
 
 class Signin extends Component {
   state = {
@@ -27,7 +27,7 @@ class Signin extends Component {
   }
 
   handleFormSubmit = () => {
-    this.props.signinUser({ this.state.email, this.state.password })
+    this.props.signinUser(this.state.email, this.state.password)
   }
 
   renderAlert () {
@@ -56,8 +56,8 @@ class Signin extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    errorMessage: state.auth.error,
-    authenticated: state.auth.authenticated }
+    errorMessage: state.error,
+    authenticated: state.authenticated }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { signoutUser } as actions from '../../actions/index'
+import { signoutUser } from '../../actions/index'
 
 class Signout extends Component {
   componentWillMount () {

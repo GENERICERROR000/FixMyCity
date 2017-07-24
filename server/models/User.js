@@ -2,14 +2,14 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt-nodejs')
 
 const userSchema = mongoose.Schema({
-  first_name: {
-    type: String,
-    required: true
-  },
-  last_name: {
-    type: String,
-    required: true
-  },
+  // first_name: {
+  //   type: String,
+  //   required: true
+  // },
+  // last_name: {
+  //   type: String,
+  //   required: true
+  // },
   email: {
     type: String,
     required: true
@@ -17,19 +17,19 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  position: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: {type: String},
-    coordinates: []
-  },
-  admin: {
-    type: Boolean,
-    required: true
-  },
+  }
+  // position: {
+  //   type: String,
+  //   required: true
+  // },
+  // location: {
+  //   type: {type: String},
+  //   coordinates: []
+  // },
+  // admin: {
+  //   type: Boolean,
+  //   required: true
+  // },
 })
 
 // On Save Hook, encrypt password

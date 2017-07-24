@@ -7,7 +7,6 @@ router.post('/api/v1/authenticate', (req, res) => {
   User.findOne({
     email: req.body.email
   }, (err, user) => {
-    console.log(user);
     if (err) {
       throw err // TODO: CHANGE TO SENDING CORRECT ERROR BACK TO CLIENT
     } else if (!user) {
@@ -17,13 +16,13 @@ router.post('/api/v1/authenticate', (req, res) => {
       })
     } else if (user) {
       if (user.comparePassword(req.body.password, function (err, isMatch) {
-          if (err) {
-            throw err // TODO: CHANGE TO SENDING CORRECT ERROR BACK TO CLIENT
-          }
-          if (!isMatch) {
-            return false
-          }
-          return true
+        if (err) {
+          throw err // TODO: CHANGE TO SENDING CORRECT ERROR BACK TO CLIENT
+        }
+        if (!isMatch) {
+          return false
+        }
+        return true
         })) {
           res.send({
             success: false,
@@ -31,15 +30,15 @@ router.post('/api/v1/authenticate', (req, res) => {
           })
         }
       } else {
-        var token = jwt.sign(user, app.get('secret'))
+        const token = jwt.sign(user, app.get('secret'))
 
         res.send({
           success: true,
           token: token
         })
       }
-    }
-  })
-})
+    })
+  }
+)
 
 module.exports = router

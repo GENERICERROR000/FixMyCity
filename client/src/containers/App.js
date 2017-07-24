@@ -11,13 +11,13 @@ export default class App extends Component {
   render () {
     return (
       <Router>
-        <Navbar />
         <div>
-          <Route path='/' component={Issues} />
-          <Route path='/signin' component={Signin} />
-          <Route path='/signout' component={Signout} />
-          <Route path='/signup' component={Signup} />
-          <Route path='/issues' component={RequireAuth(Issues)} />
+        <Navbar />
+          <Route exact path='/' component={Issues} />
+          <Route exact path='/signin' component={Signin} />
+          <Route exact path='/signout' component={Signout} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/issues' component={RequireAuth(Issues)} />
         </div>
       </Router>
     )

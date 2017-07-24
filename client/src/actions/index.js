@@ -7,9 +7,10 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DID_GET_ISSUE } fro
 
 const ROOT_URL = 'http://localhost:3000/api/v1/'
 
-export const signinUser = ({ email, password }) => {
+export const signinUser = (email, password) => {
+  const URL = `${ROOT_URL}signin`
   return (dispatch) => {
-    axios.post(ROOT_URL + "/authenticate", { email, password })
+    axios.post(URL, { email, password })
       .then(res => {
         dispatch({ type: AUTH_USER })
         localStorage.setItem('jwt', res.data.token)
@@ -20,15 +21,16 @@ export const signinUser = ({ email, password }) => {
   }
 }
 
-export const signupUser = ({ email, password }) => {
+export const signupUser = (email, password) => {
+  const URL = `${ROOT_URL}signup`
   return (dispatch) => {
-    axios.post(ROOT_URL + "/signup", { email, password })
+    axios.post(URL, { email, password })
       .then(res => {
         dispatch({ type: AUTH_USER })
         localStorage.setItem('jwt', res.data.token)
       })
       .catch(res => {
-        dispatch(authError(res.data.error))
+        dispatch(authError(res.error))
       })
   }
 }
@@ -39,33 +41,34 @@ export const signoutUser = () => {
 }
 
 export const getIssues = () => {
+  const URL = `${ROOT_URL}issues`
   return (dispatch) => {
-    axios.get(ROOT_URL + "issues", { headers: {'x-access-token': localStorage.jwt} })
-      .then(res => res.json())
-      .then(issues => dispatch({
+    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
+      .then(res => dispatch({
         type: DID_GET_ISSUES,
-        payload: issues
+        payload: res.data
       }))
       .catch(res => {
-        dispatch(authError(res.data.error))
+        dispatch(authError(res.error))
       })
   }
 }
 
 export const getIssue = (id) => {
+  const URL = `${ROOT_URL}issues/${id}`
   return (dispatch) => {
-    axios.get(ROOT_URL + "issues/" + `${id}`, { headers: {'x-access-token': localStorage.jwt} })
-      .then(res => res.json())
+    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
       .then(issue => dispatch({
         type: DID_GET_ISSUE,
         payload: issue
       }))
       .catch(res => {
-        dispatch(authError(res.data.error))
+        dispatch(authError(res.error))
       })
+    }
 }
 
-export const authError = (error) => {
+export  const authError = (error) => {
   return {
     type: AUTH_ERROR,
     payload: error

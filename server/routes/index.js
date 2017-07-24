@@ -1,16 +1,15 @@
 const jwt = require('jsonwebtoken')
-const authenticate = require('./auth/authenticate')
+const config = require('../configs/config')
+const signin = require('./auth/signin')
+const signup = require('./auth/signup')
 const home = require('./home')
 const issues = require('./issues')
-const users = require('./users')
 
 module.exports = function (app) {
   // ##### UNPROTECTED ROUTES #####
   app.use('/', home)
-  // vvvvv move down later vvvvv
-  app.use('/api/v1/issues', issues)
-  // ^^^^^ move down later ^^^^^
-  app.use('/api/v1/authenticate', authenticate)
+  app.use('/api/v1/signup', signup)
+  app.use('/api/v1/signin', signin)
 
   // ##### PROTECTED ROUTES #####
   // Authenticate Routes
@@ -18,7 +17,7 @@ module.exports = function (app) {
   app.use((req, res, next) => {
     var token = req.headers['x-access-token']
     if (token) {
-      jwt.verify(token, app.get('secret'), (err, decoded) => {
+      jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
           return res.send({
             success: false,
@@ -36,8 +35,7 @@ module.exports = function (app) {
     }
   })
 
-  app.use('/users', users)
-  // app.use('/api/v1/issues', issues)
+  app.use('/api/v1/issues', issues)
 
   // 404 ERROR
   app.use((req, res) => {

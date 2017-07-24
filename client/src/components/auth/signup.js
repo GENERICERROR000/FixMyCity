@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { signupUser } as actions from '../../actions/index'
+import { signupUser } from '../../actions/index'
 
 class Signup extends Component {
   state = {
@@ -32,7 +32,7 @@ class Signup extends Component {
       // TODO: DISPLAY ERROR THAT FIELDS DO NOT MATCH
     }
 
-    this.props.signupUser({ this.state.email, this.state.password })
+    this.props.signupUser(this.state.email, this.state.password)
   }
 
   renderAlert () {
@@ -62,7 +62,7 @@ class Signup extends Component {
 }
 
 function mapStateToProps (state) {
-  return { errorMessage: state.auth.error }
+  return { errorMessage: state.error }
 }
 
 const mapDispatchToProps = (dispatch) => {

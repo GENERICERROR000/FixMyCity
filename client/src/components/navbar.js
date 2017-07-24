@@ -12,12 +12,14 @@ class Header extends Component {
       )
     } else {
       return (
-        <li key={1}>
-          <Link to='/signin'>Sign In</Link>
-        </li>
-        <li key={2}>
-          <Link to='/signup'>Sign Up</Link>
-        </li>
+        <div>
+          <li key={1}>
+            <Link to='/signin'>Sign In</Link>
+          </li>
+          <li key={2}>
+            <Link to='/signup'>Sign Up</Link>
+          </li>
+        </div>
       )
     }
   }
@@ -34,9 +36,9 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
-    authenticated: state.auth.authenticated
+    authenticated: state.authenticated
   }
 }
 
