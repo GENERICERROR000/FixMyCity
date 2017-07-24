@@ -5,7 +5,7 @@ const signup = require('./auth/signup')
 const home = require('./home')
 const issues = require('./issues')
 
-module.exports = function (app) {
+module.exports = (app) => {
   // ##### UNPROTECTED ROUTES #####
   app.use('/', home)
   app.use('/api/v1/signin', signin)

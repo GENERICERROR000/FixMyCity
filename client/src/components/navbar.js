@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderLinks () {
-    console.log(this.props.authenticated)
     if (this.props.authenticated) {
       return (
         <div>

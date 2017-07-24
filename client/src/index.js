@@ -13,7 +13,8 @@ const middleware = composeWithDevTools(applyMiddleware(reduxThunk))
 
 const store = createStore(reducers, middleware)
 
-const token = localStorage.getItem('token')
+// TODO: MAKE THIS MORE SECURE - MAYBE VALIDATE THE TOKEN?
+const token = localStorage.getItem('jwt')
 if (token) {
   store.dispatch({ type: AUTH_USER })
 }

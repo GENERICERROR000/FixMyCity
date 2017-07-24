@@ -10,6 +10,7 @@ export default (CandidateComponent) => {
     }
 
     componentWillMount() {
+
       if (!this.props.authenticated) {
         this.context.router.history.push('/')
       }
@@ -27,7 +28,7 @@ export default (CandidateComponent) => {
   }
 
   const mapStateToProps = (state) => {
-    return { authenticated: state.authenticated }
+    return { authenticated: state.auth.authenticated }
   }
 
   return connect(mapStateToProps)(Authentication)
