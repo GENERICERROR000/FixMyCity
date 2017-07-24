@@ -1,10 +1,10 @@
-const authenticate = require('./authenticate')
+const jwt = require('jsonwebtoken')
+const authenticate = require('./auth/authenticate')
 const home = require('./home')
 const issues = require('./issues')
 const users = require('./users')
 
 module.exports = function (app) {
-  // ----------> API ROUTES <----------
   // ##### UNPROTECTED ROUTES #####
   app.use('/', home)
   // vvvvv move down later vvvvv
@@ -14,6 +14,7 @@ module.exports = function (app) {
 
   // ##### PROTECTED ROUTES #####
   // Authenticate Routes
+  // TODO: Will change to: authenticate(app)
   app.use((req, res, next) => {
     var token = req.headers['x-access-token']
     if (token) {
@@ -44,5 +45,4 @@ module.exports = function (app) {
     err.status = 404
     res.send(err)
   })
-  // ----------> END API ROUTES <----------
 }

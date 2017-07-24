@@ -1,4 +1,4 @@
-import { DID_GET_ISSUES, DID_GET_ISSUE} from '../action_types'
+import { DID_GET_ISSUES, DID_GET_ISSUE} from './action_types'
 
 const API_URL = 'http://localhost:3000/api/v1/issues/'
 

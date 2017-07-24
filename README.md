@@ -3,6 +3,10 @@
 
 # TODO
 
+## QUESTIONS
+
+* For ENV vars stored in .bash_profile, what do when on Heroku/AWS?
+
 ## Implement
 
 1. ~~Redux~~

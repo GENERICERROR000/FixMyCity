@@ -2,7 +2,6 @@
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const express = require('express')
-const jwt = require('jsonwebtoken')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 
@@ -14,22 +13,22 @@ const twit = require('./configs/twit_config')
 // Connect To DB
 mongoose.connect(config.database)
 
-// ----------> APP SETUP <----------
+// App Setup
 const app = express()
 
-app.set('secret', config.secret) // secret variable
+// TODO: MOVE SECRECT TO .BASH_PROFILE(CHECK IF CORRECT)
+app.set('secret', config.secret)
 
-app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
+app.use(logger('dev'))
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
   res.setHeader('Access-Control-Allow-Headers', 'content-type, x-access-token')
   next()
 })
-// ----------> END APP SETUP <----------
 
 // Initiate Routes
 router(app)

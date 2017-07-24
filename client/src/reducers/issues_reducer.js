@@ -1,4 +1,4 @@
-import { DID_GET_ISSUES, DID_GET_ISSUE} from '../action_types'
+import { DID_GET_ISSUES, DID_GET_ISSUE} from '../actions/action_types'
 
 export default (state = [], action) => {
   if (action.error) {
