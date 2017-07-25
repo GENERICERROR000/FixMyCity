@@ -17,8 +17,8 @@
 4. ~~React-Router (make sure working with Redux)~~
 5. ~~Make sure Async fetch works with React-Router and Redux~~
   * ~~Redux-Thunk~~
-6. Material-UI
-  * Create Custom Theme for App
+6. Pick and Setup UI Framework
+
 
 ## Logic
 

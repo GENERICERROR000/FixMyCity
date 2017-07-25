@@ -34,12 +34,12 @@ export const signupUser = (email, password) => {
   }
 }
 
-export const checkToken = (token) => {
+export const checkToken = () => {
   const URL = `${ROOT_URL}auth`
   return (dispatch) => {
-    axios.get(URL, { headers: {'x-access-token': token} })
+    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
       .then(res => {
-        if (res.success) {
+        if (res.data.success) {
           dispatch({ type: AUTH_USER })
         } else {
           localStorage.removeItem('jwt')

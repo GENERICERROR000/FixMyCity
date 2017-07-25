@@ -7,8 +7,6 @@ const router = express.Router()
 router.post('/', (req, res) => {
   const email = req.body.email
   const password = req.body.password
-  console.log("E:", email)
-  console.log("P:", password);
   if (!email || !password) {
     console.log("WHY")
     return res.status(422).send({

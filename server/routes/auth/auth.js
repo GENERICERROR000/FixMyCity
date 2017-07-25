@@ -5,16 +5,14 @@ const User = require('../../models/user')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  console.log("hits")
   var token = req.headers['x-access-token']
-  if (token) {
+  if (!!token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        return res.send({
+        return res.status(401).send({
           success: false,
           message: 'Failed to authenticate token.' })
       } else {
-        console.log("is good")
         req.decoded = decoded
         res.send({
           success: true,
