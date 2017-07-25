@@ -25,9 +25,15 @@ class Issues extends Component {
 
   render() {
     return (
-      <div className="contentcontainer" >
-        <div className="content" >
-          {this.loading()}
+      <div>
+        <div className="filter-container">
+
+        </div>
+        <div className="content-container" >
+          <div className="content" >
+            {this.loading()}
+            <hr />
+          </div>
         </div>
       </div>
     )

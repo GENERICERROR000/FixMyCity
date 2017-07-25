@@ -10,7 +10,6 @@ export default (CandidateComponent) => {
     }
 
     componentWillMount() {
-
       if (!this.props.authenticated) {
         this.context.router.history.push('/')
       }

@@ -14,7 +14,7 @@
   float: left;
 }
 
-.navbutton {
+.nav-button {
   color: #ffffff;
   background: #5595CD;
   border-color: #ffffff;
@@ -23,7 +23,7 @@
   float: right;
 }
 
-.navbutton:hover {
+.nav-button:hover {
   color: #ffffff;
   background-color: #FFD08D;
 }

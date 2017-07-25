@@ -1,12 +1,18 @@
 @import '~antd/dist/antd.css';
 
-.contentcontainer {
-  margin: 150px 50px 50px 50px;
+.filter-container {
+  background: #F7AF8A;
+  margin: 50px 50px 50px 50px;
+  height: 100px;
+}
+
+.content-container {
+  margin: 50px 50px 50px 50px;
   height: 300px;
   overflow-y: scroll;
 }
 
 .content {
   background: #DBDBDB;
-  padding: 24;
+  padding: 10px;
 }
