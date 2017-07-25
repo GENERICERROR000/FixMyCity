@@ -35,7 +35,7 @@ export const signupUser = (email, password) => {
 }
 
 export const signoutUser = () => {
-  localStorage.removeItem('token')
+  localStorage.removeItem('jwt')
   return { type: UNAUTH_USER }
 }
 

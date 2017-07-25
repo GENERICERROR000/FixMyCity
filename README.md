@@ -10,13 +10,15 @@
 ## Implement
 
 1. ~~Redux~~
-2. Node
+2. ~~Node~~
   * ~~JWT for API~~
-  * Auth for User
-4. Implement JWT and Auth for client
-3. React-Router (make sure working with Redux)
-4. Make sure Async fetch works with React-Router and Redux
-* reduxThunk, redux-form
+  * ~~Auth for User~~
+3. ~~Implement JWT and Auth for client~~
+4. ~~React-Router (make sure working with Redux)~~
+5. ~~Make sure Async fetch works with React-Router and Redux~~
+  * ~~Redux-Thunk~~
+6. Material-UI
+  * Create Custom Theme for App
 
 ## Logic
 
@@ -31,6 +33,7 @@
 
 ## STRETCH
   1. Server Side Routing (Branch: "ssr")
+    * (https://github.com/kireerik/razzle-material-ui-styled-example/tree/298fa531d11dc5569b42b8629d84a56ab78d358e)
     * (https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/)
     * (https://www.codementor.io/mz026/server-side-rendering-with-redux-and-react-router-8s8en3o7p)
     * (https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md)
