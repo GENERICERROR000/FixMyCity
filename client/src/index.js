@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './containers/app'
 import registerServiceWorker from './registerServiceWorker'
 import reducers from './reducers/index'
+import './css/index.css'
 
 const middleware = composeWithDevTools(applyMiddleware(reduxThunk))
 

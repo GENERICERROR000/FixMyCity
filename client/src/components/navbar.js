@@ -9,15 +9,15 @@ class Navbar extends Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <Link to='/signout'><Button ghost className="navbutton">Sign Out</Button></Link>
-          <Link to='/issues'><Button ghost className="navbutton">Issues</Button></Link>
+          <Link to='/signout'><Button className="navbutton">Sign Out</Button></Link>
+          <Link to='/issues'><Button className="navbutton">Issues</Button></Link>
         </div>
       )
     } else {
       return (
         <div>
-          <Link to='/signin'><Button ghost className="navbutton">Sign In </Button></Link>
-          <Link to='/signup'><Button ghost className="navbutton">Sign Up</Button></Link>
+          <Link to='/signin'><Button className="navbutton">Sign In </Button></Link>
+          <Link to='/signup'><Button className="navbutton">Sign Up</Button></Link>
         </div>
       )
     }

@@ -8,7 +8,7 @@ import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
 import RequireAuth from '../components/auth/require_auth'
 import Home from '../components/home'
-import Issues from '../components/issues'
+import Issues from '../containers/issues'
 import NotFound from '../components/404'
 import { checkToken } from '../actions/index'
 

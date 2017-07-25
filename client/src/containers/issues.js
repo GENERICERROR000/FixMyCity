@@ -1,9 +1,13 @@
-// TODO: THIS IS TEMP - SHOULD BE A CONTAINER THAT RENDERS ISSUE COMPONENT
-
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Button, Layout } from 'antd'
 import { getIssues } from '../actions/index'
+import Issue from '../components/issue'
+import '../css/issues.css'
+
+
+// TODO: TAKE IN FILTER OPTION THAT IS PASSED TO GETISSUES() SO GET REQ IS FILTERED
 
 class Issues extends Component {
 
@@ -13,15 +17,7 @@ class Issues extends Component {
 
   loading = () => {
     if (this.props.issues[0]) {
-      return this.props.issues.map((issue, i) => {
-        return (
-          <div key={i}>
-            <h2>{issue.posted_by}</h2>
-            <h4>{issue.posted_on}</h4>
-            <h4>{issue.tweet_content}</h4>
-          </div>
-        )
-      })
+      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue}/> })
     } else {
       return "Loading..."
     }
@@ -29,9 +25,10 @@ class Issues extends Component {
 
   render() {
     return (
-      <div>
-        <h1>FixMyCity</h1>
-        {this.loading()}
+      <div className="contentcontainer" >
+        <div className="content" >
+          {this.loading()}
+        </div>
       </div>
     )
   }

@@ -7,15 +7,23 @@
 
 .logo {
   width: 120px;
-  height: 31px;
+  height: 30px;
   background: #FFD08D;
   /*border-radius: 6px;*/
-  margin: 16px 24px 16px 0px;
+  margin: 16px 24px 16px 0;
   float: left;
 }
 
 .navbutton {
+  color: #ffffff;
+  background: #5595CD;
+  border-color: #ffffff;
   border-radius: 0px;
-  margin: 16px 24px 16px 0px;
+  margin: 16px 24px 16px 0;
   float: right;
+}
+
+.navbutton:hover {
+  color: #ffffff;
+  background-color: #FFD08D;
 }
