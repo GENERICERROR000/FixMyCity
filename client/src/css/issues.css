@@ -1,11 +1,5 @@
 @import '~antd/dist/antd.css';
 
-.filter-container {
-  background: #F7AF8A;
-  margin: 50px 50px 50px 50px;
-  height: 100px;
-}
-
 .content-container {
   margin: 50px 50px 50px 50px;
   height: 300px;

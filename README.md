@@ -18,6 +18,7 @@
 5. ~~Make sure Async fetch works with React-Router and Redux~~
   * ~~Redux-Thunk~~
 6. Pick and Setup UI Framework
+7. Refactor Server to Use Routes and Controllers Similar to Tony's Code
 
 
 ## Logic

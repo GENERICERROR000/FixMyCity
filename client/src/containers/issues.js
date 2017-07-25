@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button, Layout } from 'antd'
 import { getIssues } from '../actions/index'
 import Issue from '../components/issue'
+import FilterBar from '../components/filter_bar'
 import '../css/issues.css'
 
 
@@ -12,7 +12,8 @@ import '../css/issues.css'
 class Issues extends Component {
 
   componentWillMount() {
-    this.props.getIssues()
+    // TODO: pass filter to this
+    // this.props.getIssues()
   }
 
   loading = () => {
@@ -23,12 +24,15 @@ class Issues extends Component {
     }
   }
 
+  applyFilter = (filterInput) => {
+    // this.props.getIssues(filterInput)
+    this.props.getIssues()
+  }
+
   render() {
     return (
       <div>
-        <div className="filter-container">
-
-        </div>
+      <FilterBar applyFilter={this.applyFilter} />
         <div className="content-container" >
           <div className="content" >
             {this.loading()}
