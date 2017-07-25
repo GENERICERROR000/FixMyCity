@@ -11,16 +11,11 @@ import '../css/issues.css'
 
 class Issues extends Component {
 
-  componentWillMount() {
-    // TODO: pass filter to this
-    // this.props.getIssues()
-  }
-
   loading = () => {
     if (this.props.issues[0]) {
       return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue}/> })
     } else {
-      return "Loading..."
+      return "Please Select Filters and/or Click \"Submit\""
     }
   }
 
