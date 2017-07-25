@@ -30,6 +30,7 @@
 
 1. Live feed of Tweets
 2. Maps Maps Maps
+3. Lazy-Load content??
 
 ## STRETCH
   1. Server Side Routing (Branch: "ssr")

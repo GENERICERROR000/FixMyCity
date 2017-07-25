@@ -1,29 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Button, Layout } from 'antd'
+import '../css/navbar.css'
 
-class Header extends Component {
+class Navbar extends Component {
   renderLinks () {
     if (this.props.authenticated) {
       return (
         <div>
-          <li key={1}>
-            <Link to='/signout'>Sign Out</Link>
-          </li>
-          <li key={2}>
-            <Link to='/issues'>Issues</Link>
-          </li>
+          <Link to='/signout'><Button ghost className="navbutton">Sign Out</Button></Link>
+          <Link to='/issues'><Button ghost className="navbutton">Issues</Button></Link>
         </div>
       )
     } else {
       return (
         <div>
-          <li key={1}>
-            <Link to='/signin'>Sign In</Link>
-          </li>
-          <li key={2}>
-            <Link to='/signup'>Sign Up</Link>
-          </li>
+          <Link to='/signin'><Button ghost className="navbutton">Sign In </Button></Link>
+          <Link to='/signup'><Button ghost className="navbutton">Sign Up</Button></Link>
         </div>
       )
     }
@@ -31,12 +25,12 @@ class Header extends Component {
 
   render () {
     return (
-      <nav className='navbar navbar-light'>
-        <Link to='/'><h1>FixMyCity</h1></Link>
-        <ul>
+      <div>
+        <Layout.Header className="navbar">
+          <Link to='/'><div className="logo" /></Link>
           {this.renderLinks()}
-        </ul>
-      </nav>
+        </Layout.Header>
+      </div>
     )
   }
 }
@@ -47,4 +41,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(Navbar)
