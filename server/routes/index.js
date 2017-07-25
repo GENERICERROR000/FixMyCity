@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const config = require('../configs/config')
+const auth = require('./auth/auth')
 const signin = require('./auth/signin')
 const signup = require('./auth/signup')
 const home = require('./home')
@@ -8,6 +9,7 @@ const issues = require('./issues')
 module.exports = (app) => {
   // ##### UNPROTECTED ROUTES #####
   app.use('/', home)
+  app.use('/api/v1/auth', auth)
   app.use('/api/v1/signin', signin)
   app.use('/api/v1/signup', signup)
 

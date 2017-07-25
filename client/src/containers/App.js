@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navbar from '../components/navbar'
 import Signin from '../components/auth/signin'
@@ -7,8 +9,14 @@ import Signup from '../components/auth/signup'
 import RequireAuth from '../components/auth/require_auth'
 import Home from '../components/home'
 import Issues from '../components/issues'
+import { checkToken } from '../actions/index'
 
-export default class App extends Component {
+class App extends Component {
+
+  componentWillMount() {
+    this.props.checkToken()
+  }
+
   render () {
     return (
       <Router>
@@ -24,3 +32,11 @@ export default class App extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    checkToken: checkToken
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(App)
