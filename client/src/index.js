@@ -1,3 +1,5 @@
+import { LocaleProvider } from 'antd'
+import enUS from 'antd/lib/locale-provider/en_US'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, createStore } from 'redux'
@@ -14,9 +16,11 @@ const middleware = composeWithDevTools(applyMiddleware(reduxThunk))
 const store = createStore(reducers, middleware)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <LocaleProvider locale={enUS}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </LocaleProvider>,
   document.querySelector('#root')
 )
 
