@@ -1,36 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Layout } from 'antd'
+import { Button, Menu } from 'semantic-ui-react'
 import '../css/navbar.css'
 
 class Navbar extends Component {
   renderLinks () {
     if (this.props.authenticated) {
       return (
-        <div>
+        <Menu.Item position='right'>
           <Link to='/signout'><Button className="nav-button">Sign Out</Button></Link>
           <Link to='/issues'><Button className="nav-button">Issues</Button></Link>
-        </div>
+        </Menu.Item>
       )
     } else {
       return (
-        <div>
+        <Menu.Item position='right'>
           <Link to='/signin'><Button className="nav-button">Sign In </Button></Link>
           <Link to='/signup'><Button className="nav-button">Sign Up</Button></Link>
-        </div>
+        </Menu.Item>
       )
     }
   }
 
   render () {
     return (
-      <div>
-        <Layout.Header className="navbar">
+      <Menu className="navbar">
+        <Menu.Item>
           <Link to='/'><div className="logo" /></Link>
-          {this.renderLinks()}
-        </Layout.Header>
-      </div>
+        </Menu.Item>
+        {this.renderLinks()}
+      </Menu>
     )
   }
 }

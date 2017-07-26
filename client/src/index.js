@@ -1,4 +1,3 @@
-import { LocaleProvider } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -9,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './containers/app'
 import registerServiceWorker from './registerServiceWorker'
 import reducers from './reducers/index'
+import 'semantic-ui-css/semantic.min.css'
 import './css/index.css'
 
 const middleware = composeWithDevTools(applyMiddleware(reduxThunk))
@@ -16,11 +16,9 @@ const middleware = composeWithDevTools(applyMiddleware(reduxThunk))
 const store = createStore(reducers, middleware)
 
 ReactDOM.render(
-  <LocaleProvider locale={enUS}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </LocaleProvider>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.querySelector('#root')
 )
 

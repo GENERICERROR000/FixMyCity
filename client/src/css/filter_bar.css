@@ -1,31 +1,18 @@
-@import '~antd/dist/antd.css';
-
 .filter-container {
-  background: #F7AF8A;
-  margin: 50px 50px 50px 50px;
-  height: 100px;
-}
-
-.filter-input {
-  margin: 30px 8px 0 8px;
-  float: left;
-}
-
-.filter-input-width {
-  width: 170px;
+  background: #F7AF8A !important;
+  margin: 50px 50px 50px 50px !important;
+  border-radius: 0px !important;
 }
 
 .submit-button {
-  color: #ffffff;
-  background: #FFD08D;
-  border-color: #FFD08D;
-  border-radius: 0px;
-  margin: 16px 24px 16px 0;
-  float: right;
+  color: #ffffff !important;
+  background: #FFD08D !important;
+  border-color: #FFD08D !important;
+  border-radius: 0px !important;
 }
 
 .submit-button:hover {
-  color: #FFD08D;
-  border-color: #ffffff;
-  background-color: #ffffff;
+  color: #FFD08D !important;
+  border-color: #ffffff !important;
+  background-color: #ffffff !important;
 }

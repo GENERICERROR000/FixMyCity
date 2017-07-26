@@ -10,7 +10,6 @@ import Home from '../components/home'
 import Issues from '../containers/issues'
 import NotFound from '../components/404'
 
-
 class App extends Component {
 
   render () {

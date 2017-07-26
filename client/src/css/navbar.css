@@ -1,30 +1,23 @@
-@import '~antd/dist/antd.css';
-
 .navbar {
-  width: 100%;
-  background: #5595CD;
+  background: #5595CD !important;
+  border-radius: 0px !important;
 }
 
 .logo {
   width: 120px;
   height: 30px;
   background: #FFD08D;
-  /*border-radius: 6px;*/
-  margin: 16px 24px 16px 0;
-  float: left;
 }
 
 .nav-button {
-  color: #ffffff;
-  background: #5595CD;
-  border-color: #ffffff;
-  border-radius: 0px;
-  margin: 16px 24px 16px 0;
-  float: right;
+  color: #ffffff !important;
+  background: #5595CD !important;
+  border-color: #ffffff !important;
+  border-radius: 0px !important;
 }
 
 .nav-button:hover {
-  color: #ffffff;
-  background-color: #FFD08D;
-  border-color: #FFD08D;
+  color: #ffffff !important;
+  background-color: #FFD08D !important;
+  border-color: #FFD08D !important;
 }
