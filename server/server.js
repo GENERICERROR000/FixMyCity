@@ -6,8 +6,9 @@ const logger = require('morgan')
 const mongoose = require('mongoose')
 
 // Files
-const config = require('./configs/config');
-const router = require('./routes/index');
+const config = require('./configs/config')
+// const router = require('./routes/index')
+const router = require('./router')
 const twit = require('./configs/twit_config')
 
 // Connect To DB
