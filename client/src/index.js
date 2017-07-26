@@ -1,4 +1,3 @@
-import enUS from 'antd/lib/locale-provider/en_US'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, createStore } from 'redux'

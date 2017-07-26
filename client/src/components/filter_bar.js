@@ -52,16 +52,18 @@ class FilterBar extends Component {
     this.props.applyFilter(this.state)
   }
 
-// TODO:
-// TODO: Event handlers working? 
+// TODO: Add Calend Selector
+// TODO: Event handlers working?
 
   render() {
     return (
       <Form as={Menu} className="filter-container">
         <Form.Group widths='equal'>
-          <Form.Input placeholder="Location" onChange={this.inputHandler}/>
-          <Form.Select placeholder="Issue Type" options={this.issue_options} onChange={this.issueHandler} />
-          <Form.Select placeholder="Number of Complaints" options={this.complain_options} onChange={this.numComplaintsHandler} />
+          <Form.Input type="date" label="Start Date"/>
+          <Form.Input type="date" label="End Date"/>
+          <Form.Input label="Location" placeholder="Location" onChange={this.inputHandler}/>
+          <Form.Select label="Issue Type" placeholder="Issue Type" options={this.issue_options} onChange={this.issueHandler} />
+          <Form.Select label="Number of Complaints" placeholder="Number of Complaints" options={this.complain_options} onChange={this.numComplaintsHandler} />
           <Button className="submit-button" onClick={this.submitHandler}>Submit</Button>
       </Form.Group>
       </Form>

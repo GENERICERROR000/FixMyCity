@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Container } from 'semantic-ui-react'
 import { getIssues } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filter_bar'
@@ -24,16 +25,15 @@ class Issues extends Component {
     this.props.getIssues()
   }
 
+  // TODO: Make sure content box is same size as filter box
   render() {
     return (
       <div>
-      <FilterBar applyFilter={this.applyFilter} />
-        <div className="content-container" >
-          <div className="content" >
-            {this.loading()}
-            <hr />
-          </div>
-        </div>
+        <FilterBar applyFilter={this.applyFilter} />
+        <Container className="content">
+          {this.loading()}
+          <hr />
+        </Container>
       </div>
     )
   }

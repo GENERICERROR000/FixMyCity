@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const issueSchema = mongoose.Schema({
+const issueSchema = new Schema({
   posted_by: {
     type: String,
     required: true
@@ -10,28 +11,38 @@ const issueSchema = mongoose.Schema({
     required: true
   },
   posted_on: {
-    type: String,
+    type: Date,
     required: true
   },
   tweet_content: {
     type: String,
     required: true
   },
-  // issue: {
-  //   type: String,
-  //   required: true
-  // },
+  issue: {
+    type: String,
+    required: false
+  },
   location: {
-    type: {type: String},
+    type: {type: String, default: "Point"},
     coordinates: []
   },
   status: {
     type: String,
-    required: true
+    default: "new"
   },
-  hits: Number,
+  hits: {
+    type: Number,
+    default: 1
+  },
   report: String
-})
+}, {
+    timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }}
+)
+
+issueSchema.index({ "location": "2dsphere" })
 
 const Issue = mongoose.model('issue', issueSchema)
 module.exports = Issue

@@ -1,8 +1,7 @@
 const twit = require('twit')
 const Issue = require('../models/Issue')
 
-// ----------> CONNECTIONS TWIITER API <----------
-module.exports = function () {
+module.exports = () => {
   // Config Settings For Twit
   const Twitter = new twit({
     consumer_key: process.env.TWIT_CK,
@@ -17,25 +16,21 @@ module.exports = function () {
 
   // Set Action For New Tweet
   stream.on('tweet', (tweet) => {
+    // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
     let issue = {
       posted_by: tweet.user.screen_name,
       posted_by_id: tweet.user.id,
-      posted_on: tweet.created_at,
+      posted_on: new Date(tweet.created_at),
       tweet_content: tweet.text,
       location: {
-        type: "Point",
         coordinates: tweet.geo.coordinates
-      },
-      status: "new",
-      hits: 1,
-      report: ''
+      }
     }
 
     Issue.create(issue, (err, newIssue) => {
       if (err) {
-        throw err
+        throw err // TODO: Send correct error
       }
     })
   })
 }
-// ----------> END CONNECTIONS TWIITER API <----------
