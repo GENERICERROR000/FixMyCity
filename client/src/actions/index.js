@@ -45,7 +45,6 @@ export const checkToken = () => {
         if (res.data.success) {
           dispatch({ type: AUTH_USER })
         } else {
-          console.log("not valid")
           localStorage.removeItem('jwt')
         }
       })

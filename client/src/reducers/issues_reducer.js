@@ -7,12 +7,10 @@ export default (state = [], action) => {
 
   switch (action.type) {
     case DID_GET_ISSUES:
-      return [...state, ...action.payload]
+      return [...action.payload]
     case DID_GET_ISSUE:
       return [...state, ...action.payload]
     default:
       return state
   }
 }
-
-// TODO: REFACTOR TO HAVE ISSUES NEST IN ISSUES OBJ - OR NO?

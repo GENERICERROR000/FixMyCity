@@ -1,7 +1,6 @@
 const Issue = require('../models/Issue')
 
 exports.filteredIssues = (req, res) => {
-
   const params = {
     location: req.body.location || [0, 0] ,
     start_date: (req.body.start_date ? new Date(req.body.start_date) : new Date('4/21/2006')),
@@ -9,8 +8,6 @@ exports.filteredIssues = (req, res) => {
     issue_type: req.body.issue_type || /.*/g,
     num_complaints: req.body.num_complaints || /.*/g
   }
-
-  console.log(params);
 
   Issue.aggregate([
     { $geoNear: {

@@ -7,9 +7,6 @@ import Issue from '../components/issue'
 import FilterBar from '../components/filter_bar'
 import '../css/issues.css'
 
-
-// TODO: TAKE IN FILTER OPTION THAT IS PASSED TO GETISSUES() SO GET REQ IS FILTERED
-
 class Issues extends Component {
 
   loading = () => {
@@ -21,7 +18,6 @@ class Issues extends Component {
   }
 
   applyFilter = (filterInput) => {
-    // this.props.getIssues(filterInput)
     this.props.getIssues(filterInput)
   }
 
