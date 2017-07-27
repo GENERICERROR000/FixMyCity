@@ -1,6 +1,11 @@
 module.exports = {
-  // TODO: MOVE SECRECT TO .BASH_PROFILE(CHECK IF CORRECT)
-  'secret': 'XNXm|c*3t7vUZU#~',
-  'database': 'mongodb://localhost:27017/fixmycitydb',
-  'port': process.env.PORT || 3000
+  'secret': process.env.CRYPT_SECRET,
+  'database': 'mongodb://localhost/fixmycitydb',
+  'port': process.env.PORT || 3000,
+  'headers': (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
+    res.setHeader('Access-Control-Allow-Headers', 'x-access-token')
+    next()
+  }
 }

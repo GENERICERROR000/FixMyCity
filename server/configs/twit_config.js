@@ -17,7 +17,7 @@ module.exports = () => {
   // Set Action For New Tweet
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
-    let issue = {
+    const issue = new Issue ({
       posted_by: tweet.user.screen_name,
       posted_by_id: tweet.user.id,
       posted_on: new Date(tweet.created_at),
@@ -25,12 +25,10 @@ module.exports = () => {
       location: {
         coordinates: tweet.geo.coordinates
       }
-    }
+    })
 
-    Issue.create(issue, (err, newIssue) => {
-      if (err) {
-        throw err // TODO: Send correct error
-      }
+    issue.save((err, newIssue) => {
+      if(err) console.log("Error saving Tweet:", err)
     })
   })
 }

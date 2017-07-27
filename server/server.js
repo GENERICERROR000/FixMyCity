@@ -1,41 +1,37 @@
-// Libraries
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const express = require('express')
-const logger = require('morgan')
-const mongoose = require('mongoose')
+const bodyParser = require('body-parser'),
+  cors = require('cors'),
+  express = require('express'),
+  logger = require('morgan'),
+  mongoose = require('mongoose'),
+  config = require('./configs/config'),
+  router = require('./router'),
+  twit = require('./configs/twit_config')
 
-// Files
-const config = require('./configs/config')
-// const router = require('./routes/index')
-const router = require('./router')
-const twit = require('./configs/twit_config')
+// ########## Create Server ##########
+// ----------> Connect To DB <----------
+mongoose.connect(config.database, (err) => {
+  if(err) console.log(err)
+  console.log("Connected to DB:", config.database)
+})
 
-// Connect To DB
-mongoose.connect(config.database)
-
-// App Setup
+// ----------> Init app <----------
 const app = express()
 
+// ----------> Set Middleware <----------
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.use(logger('dev'))
-// TODO: migrate header settings to config.js
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
-  res.setHeader('Access-Control-Allow-Headers', 'x-access-token')
-  next()
-})
+app.use(config.headers)
 
-// Initiate Routes
+// ----------> Set Routes <----------
 router(app)
 
-// Start Connection To Twitter API
+// ----------> Connect To Twitter API <----------
 twit()
 
-// Start Server
-app.listen(config.port, () => {
+// ----------> Init Server <----------
+app.listen(config.port, (err) => {
+  if(err) console.log('Something went wrong', err)
   console.log('Server started on port 3000...')
 })

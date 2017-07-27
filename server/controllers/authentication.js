@@ -78,10 +78,10 @@ exports.signup =  (req, res) => {
       password: password
     })
 
-    user.save((err) => {
-      if (err) { return next(err) } // TODO: WHAT TO DO ABOUT THESES ERRORS (SAME IN SIGNIN)
+    user.save((err, newUser) => {
+      if(err) res.status(422).send({error: err, success: false})
 
-      const token = jwt.sign(user, config.secret)
+      const token = jwt.sign(newUser, config.secret)
 
       res.send({
         success: true,
