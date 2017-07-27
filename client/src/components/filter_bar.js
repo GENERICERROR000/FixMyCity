@@ -29,13 +29,6 @@ class FilterBar extends Component {
 
   submitHandler = () => {
     this.props.applyFilter(this.state)
-    this.setState({
-      location: '',
-      start_date: '',
-      end_date: '',
-      issue_type: '',
-      num_complaints: ''
-    })
   }
 
   render() {
