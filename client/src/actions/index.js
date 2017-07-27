@@ -38,7 +38,6 @@ export const signupUser = (email, password) => {
 
 export const checkToken = () => {
   const URL = `${ROOT_URL}auth`
-
   return (dispatch) => {
     axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
       .then(res => {

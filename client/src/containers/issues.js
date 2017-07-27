@@ -13,12 +13,6 @@ class Issues extends Component {
     displayTweet: ''
   }
 
-  loadTweet = (data) => {
-    this.setState({
-      displayTweet: data
-    })
-  }
-
   loadingTweets = () => {
     if (this.props.issues[0]) {
       return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} loadTweet={this.loadTweet}/> })
@@ -42,6 +36,12 @@ class Issues extends Component {
 
   applyFilter = (filterInput) => {
     this.props.getIssues(filterInput)
+  }
+
+  loadTweet = (data) => {
+    this.setState({
+      displayTweet: data
+    })
   }
 
   render() {

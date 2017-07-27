@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Navbar from '../components/navbar'
 import Signin from '../components/auth/signin'
 import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
-import RequireAuth from '../components/auth/require_auth'
-import CheckToken from '../components/auth/check_token'
 import Home from '../components/home'
 import Issues from '../containers/issues'
 import NotFound from '../components/404'
+import { connect } from 'react-redux'
+
+
 
 class App extends Component {
 
+  check = (Component) => {
+    return this.props.authenticated ? <Component /> : <Redirect to="/" />
+  }
+
   render () {
+    console.log(this.props.authenticated);
     return (
       <Router>
         <div>
           <Route path='/' component={Navbar} />
           <Switch>
-            <Route exact path='/' component={CheckToken(Home)} />
-            <Route exact path='/signin' component={CheckToken(Signin)} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/signin' component={Signin} />
             <Route exact path='/signout' component={Signout} />
-            <Route exact path='/signup' component={CheckToken(Signup)} />
-            <Route exact path='/issues' component={RequireAuth(Issues)} />
-            <Route path='*' component={CheckToken(NotFound)} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/issues' render={() => this.check(Issues)} />
+            <Route path='*' component={NotFound} />
           </Switch>
         </div>
       </Router>
@@ -31,4 +37,8 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return { authenticated: state.auth.authenticated }
+}
+
+export default connect(mapStateToProps)(App)
