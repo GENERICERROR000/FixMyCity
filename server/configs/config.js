@@ -1,5 +1,5 @@
 module.exports = {
-  'secret': process.env.CRYPT_SECRET,
+  'secret': `${process.env.CRYPT_SECRET}`,
   'database': 'mongodb://localhost/fixmycitydb',
   'port': process.env.PORT || 3000,
   'headers': (req, res, next) => {

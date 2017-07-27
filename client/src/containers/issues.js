@@ -1,19 +1,42 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Container } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import { getIssues } from '../actions/index'
 import Issue from '../components/issue'
-import FilterBar from '../components/filter_bar'
+import FilterBar from '../components/filterBar'
+import MoreInfo from '../components/moreInfo'
 import '../css/issues.css'
 
 class Issues extends Component {
+  state = {
+    displayTweet: ''
+  }
 
-  loading = () => {
+  loadTweet = (data) => {
+    this.setState({
+      displayTweet: data
+    })
+  }
+
+  loadingTweets = () => {
     if (this.props.issues[0]) {
-      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue}/> })
+      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} loadTweet={this.loadTweet}/> })
     } else {
       return <h2>Please Select Filters and/or Click "Submit"</h2>
+    }
+  }
+
+  loadingMoreInfo = () => {
+    if (this.state.displayTweet) {
+      return <MoreInfo data={this.state.displayTweet}/>
+    } else {
+      return (
+        <div>
+          <h2>Please Select A Tweet To See More Info</h2>
+          <div className="divider" />
+        </div>
+      )
     }
   }
 
@@ -21,15 +44,25 @@ class Issues extends Component {
     this.props.getIssues(filterInput)
   }
 
-  // TODO: Make sure content box is same size as filter box
   render() {
     return (
       <div>
         <FilterBar applyFilter={this.applyFilter} />
-        <Container className="content">
-          {this.loading()}
-          <hr />
-        </Container>
+        <Grid celled>
+          <Grid.Row centered >
+            <Grid.Column width={4}>
+              <Container className="content scroll">
+                {this.loadingTweets()}
+                <div className="divider" />
+              </Container>
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <Container className="content">
+                {this.loadingMoreInfo()}
+              </Container>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     )
   }
