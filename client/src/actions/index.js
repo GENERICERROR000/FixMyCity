@@ -8,6 +8,7 @@ const ROOT_URL = 'http://localhost:3000/api/v1/'
 
 export const signinUser = (email, password) => {
   const URL = `${ROOT_URL}signin`
+
   return (dispatch) => {
     axios.post(URL, { email, password })
       .then(res => {
@@ -22,6 +23,7 @@ export const signinUser = (email, password) => {
 
 export const signupUser = (email, password) => {
   const URL = `${ROOT_URL}signup`
+
   return (dispatch) => {
     axios.post(URL, { email, password })
       .then(res => {
@@ -36,6 +38,7 @@ export const signupUser = (email, password) => {
 
 export const checkToken = () => {
   const URL = `${ROOT_URL}auth`
+
   return (dispatch) => {
     axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
       .then(res => {
@@ -57,10 +60,16 @@ export const signoutUser = () => {
   return { type: UNAUTH_USER }
 }
 
-export const getIssues = () => {
+export const getIssues = (filterInput) => {
+  const location = filterInput.location
+  const start_date = filterInput.start_date
+  const end_date = filterInput.end_date
+  const issue_type = filterInput.issue_type
+  const num_complaints = filterInput.num_complaints
   const URL = `${ROOT_URL}issues`
+
   return (dispatch) => {
-    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
+    axios.post(URL, {location, start_date, end_date, issue_type, num_complaints}, {headers: {'x-access-token': localStorage.jwt}})
       .then(res => dispatch({
         type: DID_GET_ISSUES,
         payload: res.data
@@ -73,6 +82,7 @@ export const getIssues = () => {
 
 export const getIssue = (id) => {
   const URL = `${ROOT_URL}issues/${id}`
+
   return (dispatch) => {
     axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
       .then(issue => dispatch({

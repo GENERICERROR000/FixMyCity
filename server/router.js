@@ -4,7 +4,7 @@ const Authentication = require('./controllers/authentication')
 const Issues = require('./controllers/issues')
 
 module.exports = (app) => {
-  app.get('/', Issues.allIssues) // TODO: remove when done developing
+  app.get('/', Issues.filteredIssues) // TODO: remove when done developing
   // app.get('/', (req, res) => {
   //   res.send("<h1>THIS IS A TEMPORARY HOMEPAGE</h1>")
   // })
@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.post('/api/v1/signin', Authentication.signin)
   app.post('/api/v1/signup', Authentication.signup)
   app.use(Authentication.checkToken)
-  app.get('/api/v1/issues', Issues.allIssues)
+  app.post('/api/v1/issues', Issues.filteredIssues)
 
   // 404 ERROR
   app.use((req, res) => {

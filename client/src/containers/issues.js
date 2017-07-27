@@ -16,13 +16,13 @@ class Issues extends Component {
     if (this.props.issues[0]) {
       return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue}/> })
     } else {
-      return "Please Select Filters and/or Click \"Submit\""
+      return <h2>Please Select Filters and/or Click "Submit"</h2>
     }
   }
 
   applyFilter = (filterInput) => {
     // this.props.getIssues(filterInput)
-    this.props.getIssues()
+    this.props.getIssues(filterInput)
   }
 
   // TODO: Make sure content box is same size as filter box

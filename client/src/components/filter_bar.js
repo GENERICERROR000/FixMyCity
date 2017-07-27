@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 import { Button, Form, Menu } from 'semantic-ui-react'
 import '../css/filter_bar.css'
 
-// TODO: SHOULD HAVE A PROP THAT IS A FN THAT TAKES THE FILTER PARAMS AND APPLIES THEM. So, this function will end up dispatching the call to GET Issues
-// TODO: SELECT SHOULD HAVE DYNAMIC SIZING
-
 class FilterBar extends Component {
   state = {
     location: '',
-    date_range: [],
+    start_date: '',
+    end_date: '',
     issue_type: '',
     num_complaints: ''
   }
@@ -23,47 +21,25 @@ class FilterBar extends Component {
     { key: 'l', text: 'Low to High', value: 'low' },
   ]
 
-  inputHandler = (event) => {
+  chnageHandler = (e, input) => {
     this.setState({
-      location: event.target.value
-    })
-  }
-
-  dateHandler = (date, dateString) => {
-    this.setState({
-      date_range: date
-    })
-  }
-
-  issueHandler = (value) => {
-    this.setState({
-      issue_type: value
-    })
-  }
-
-  numComplaintsHandler = (value) => {
-    this.setState({
-      num_complaints: value
+      [input.name]: input.value
     })
   }
 
   submitHandler = () => {
-    // TODO: MAKE THE filterInput() pass down as a prop
     this.props.applyFilter(this.state)
   }
-
-// TODO: Add Calend Selector
-// TODO: Event handlers working?
 
   render() {
     return (
       <Form as={Menu} className="filter-container">
         <Form.Group widths='equal'>
-          <Form.Input type="date" label="Start Date"/>
-          <Form.Input type="date" label="End Date"/>
-          <Form.Input label="Location" placeholder="Location" onChange={this.inputHandler}/>
-          <Form.Select label="Issue Type" placeholder="Issue Type" options={this.issue_options} onChange={this.issueHandler} />
-          <Form.Select label="Number of Complaints" placeholder="Number of Complaints" options={this.complain_options} onChange={this.numComplaintsHandler} />
+          <Form.Input name="start_date" type="date" label="Start Date" onChange={this.chnageHandler}/>
+          <Form.Input name="end_date" type="date" label="End Date" onChange={this.chnageHandler}/>
+          <Form.Input name="location" label="Location" placeholder="Location" onChange={this.chnageHandler}/>
+          <Form.Select name="issue_type" label="Issue Type" placeholder="Issue Type" options={this.issue_options} onChange={this.chnageHandler} />
+          <Form.Select name="num_complaints" label="Number of Complaints" placeholder="Number of Complaints" options={this.complain_options} onChange={this.chnageHandler} />
           <Button className="submit-button" onClick={this.submitHandler}>Submit</Button>
       </Form.Group>
       </Form>

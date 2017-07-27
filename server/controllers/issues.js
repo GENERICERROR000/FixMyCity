@@ -1,20 +1,16 @@
 const Issue = require('../models/Issue')
-exports.allIssues = (req, res) => {
+
+exports.filteredIssues = (req, res) => {
+
   const params = {
-    location: [40.70515924, -74.01397682],
-    start_date: new Date('6/1/2017'),
-    end_date: new Date('7/27/2017')
-    // issue_type: req.body.issue_type,
-    // num_complaints: req.body.num_complaints
+    location: req.body.location || [0, 0] ,
+    start_date: (req.body.start_date ? new Date(req.body.start_date) : new Date('4/21/2006')),
+    end_date: (req.body.end_date ? new Date(req.body.end_date) : new Date(Date.now())),
+    issue_type: req.body.issue_type || /.*/g,
+    num_complaints: req.body.num_complaints || /.*/g
   }
-  
-  // const params = {
-  //   location: req.body.location,
-  //   start_date: new Date(req.body.start_date),
-  //   end_date: new Date(req.body.end_date),
-  //   issue_type: req.body.issue_type,
-  //   num_complaints: req.body.num_complaints
-  // }
+
+  console.log(params);
 
   Issue.aggregate([
     { $geoNear: {
@@ -24,7 +20,7 @@ exports.allIssues = (req, res) => {
       },
       distanceField: "distance",
       spherical: true,
-      maxDistance: 10000
+      maxDistance: (req.body.location ? 35000 : 13000000)
     }},
       {$match: {posted_on: {$gt: params.start_date, $lt: params.end_date}}}
     ], (err, issues) => {
