@@ -13,6 +13,11 @@ class Issues extends Component {
     displayTweet: ''
   }
 
+  // TODO: MAKE THIS
+  // componentWillUnmount = () => {
+  //   // Fire action to clear the store
+  // }
+
   loadingTweets = () => {
     if (this.props.issues[0]) {
       return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} loadTweet={this.loadTweet}/> })

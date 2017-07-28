@@ -17,7 +17,8 @@ module.exports = () => {
   // Set Action For New Tweet
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
-
+    // TODO: CHECK MEDIA TO SEE IF IMG VS VIDEO
+    
     const media = tweet.entities.media ? tweet.entities.media[0].media_url_https : ''
 
     const issue = new Issue ({
@@ -31,7 +32,7 @@ module.exports = () => {
         coordinates: tweet.geo.coordinates
       }
     })
-    
+
     issue.save((err, newIssue) => {
       if(err) console.log("Error saving Tweet:", err)
     })

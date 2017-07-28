@@ -6,16 +6,14 @@ import '../css/issues.css'
 // TODO: Make sure Media can handle multiple Images
 
 const MoreInfo = (props) => {
-  const profileImg = props.data.profile_image
-  const media = props.data.media
   return (
     <div>
       <div className="divider" />
-      {profileImg ? <img src={profileImg} alt="No Profile Pic Provided" /> : null}
+      <img src={props.data.profile_image} alt="" />
       <h2>{props.data.posted_by}</h2>
       <h4>{props.data.posted_on}</h4>
       <h4>{props.data.tweet_content}</h4>
-      {media ? <img src={media} alt="No Pic Provided"/> : null}
+      <img src={props.data.media} alt="No Pictures Provided" />
       <GoogleMap data={props.data}/>
     </div>
   )
