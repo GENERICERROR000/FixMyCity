@@ -9,8 +9,6 @@ import Issues from '../containers/issues'
 import NotFound from '../components/404'
 import { connect } from 'react-redux'
 
-
-
 class App extends Component {
 
   check = (Component) => {
@@ -18,7 +16,6 @@ class App extends Component {
   }
 
   render () {
-    console.log(this.props.authenticated);
     return (
       <Router>
         <div>

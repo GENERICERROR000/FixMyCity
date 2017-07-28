@@ -36,23 +36,6 @@ export const signupUser = (email, password) => {
   }
 }
 
-export const checkToken = () => {
-  const URL = `${ROOT_URL}auth`
-  return (dispatch) => {
-    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
-      .then(res => {
-        if (res.data.success) {
-          dispatch({ type: AUTH_USER })
-        } else {
-          localStorage.removeItem('jwt')
-        }
-      })
-      .catch(res => {
-        dispatch(authError(res.error))
-      })
-  }
-}
-
 export const signoutUser = () => {
   localStorage.removeItem('jwt')
   return { type: UNAUTH_USER }

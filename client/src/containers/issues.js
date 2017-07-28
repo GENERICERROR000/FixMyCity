@@ -38,6 +38,7 @@ class Issues extends Component {
     this.props.getIssues(filterInput)
   }
 
+  // TODO: SWITCH TO USING REDUX STATE INSTEAD
   loadTweet = (data) => {
     this.setState({
       displayTweet: data

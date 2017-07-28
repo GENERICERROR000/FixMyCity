@@ -8,9 +8,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './containers/app'
 import registerServiceWorker from './registerServiceWorker'
 import reducers from './reducers/index'
+import { AUTH_USER } from './actions/action_types'
 import 'semantic-ui-css/semantic.min.css'
 import './css/index.css'
-import { AUTH_USER } from './actions/action_types'
 
 // TODO: REFACTOR SOMEHOW
 
@@ -29,20 +29,19 @@ const renderReactDOM = () => {
   registerServiceWorker()
 }
 
+const checkResp = (resp) => {
+  resp.data.success ? store.dispatch({ type: AUTH_USER }) : localStorage.removeItem('jwt')
+}
+
+const handleResp = (resp) => {
+  checkResp(resp)
+  renderReactDOM()
+}
+
 if (jwt) {
   axios.get(URL, { headers: {'x-access-token': jwt} })
-    .then(resp => {
-      if (resp.data.success) {
-        store.dispatch({ type: AUTH_USER })
-        renderReactDOM()
-      } else {
-        localStorage.removeItem('jwt')
-        renderReactDOM()
-      }
-    })
-    .catch(res => {
-      renderReactDOM()
-    })
+    .then(handleResp)
+    .catch(renderReactDOM)
 } else {
   renderReactDOM()
 }

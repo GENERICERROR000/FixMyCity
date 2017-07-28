@@ -26,7 +26,7 @@ Will need standard format for posts:
   * Image (not required)
   * Body Content
     * What needs repair
-    * Severity ratingß
+    * Severity rating
 
 ## Design
 
