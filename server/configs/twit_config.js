@@ -17,16 +17,21 @@ module.exports = () => {
   // Set Action For New Tweet
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
+
+    const media = tweet.entities.media ? tweet.entities.media[0].media_url_https : ''
+
     const issue = new Issue ({
       posted_by: tweet.user.screen_name,
       posted_by_id: tweet.user.id,
+      profile_image: tweet.user.profile_image_url_https,
       posted_on: new Date(tweet.created_at),
       tweet_content: tweet.text,
+      media: media,
       location: {
         coordinates: tweet.geo.coordinates
       }
     })
-
+    
     issue.save((err, newIssue) => {
       if(err) console.log("Error saving Tweet:", err)
     })

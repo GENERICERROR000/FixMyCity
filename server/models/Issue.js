@@ -10,6 +10,10 @@ const issueSchema = new Schema({
     type: Number,
     required: true
   },
+  profile_image: {
+    type: String,
+    required: true
+  },
   posted_on: {
     type: Date,
     required: true
@@ -17,6 +21,10 @@ const issueSchema = new Schema({
   tweet_content: {
     type: String,
     required: true
+  },
+  media: {
+    type: String,
+    required: false
   },
   issue: {
     type: String,
