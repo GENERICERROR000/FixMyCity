@@ -30,7 +30,6 @@ exports.signin = (req, res) => {
   const email = req.body.email
   const password = req.body.password
   if (!email || !password) {
-    console.log("WHY")
     return res.status(422).send({
       error: 'You must provide email and password'
     })

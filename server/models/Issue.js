@@ -52,5 +52,9 @@ const issueSchema = new Schema({
 
 issueSchema.index({ "location": "2dsphere" })
 
+issueSchema.post('save', (issue) => {
+  console.log(issue)
+})
+
 const Issue = mongoose.model('issue', issueSchema)
 module.exports = Issue

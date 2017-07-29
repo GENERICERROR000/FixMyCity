@@ -1,3 +1,4 @@
+// TODO: Moce to controllers folder
 const twit = require('twit')
 const Issue = require('../models/Issue')
 
@@ -18,7 +19,7 @@ module.exports = () => {
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
     // TODO: CHECK MEDIA TO SEE IF IMG VS VIDEO
-    
+
     const media = tweet.entities.media ? tweet.entities.media[0].media_url_https : ''
 
     const issue = new Issue ({
