@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Dummy = () => {
+const NotFound = () => {
   return (
     <div>PAGE NOT FOUND</div>
   )
 }
 
-export default Dummy
+export default NotFound

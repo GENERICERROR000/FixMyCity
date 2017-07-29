@@ -8,7 +8,7 @@ exports.filteredIssues = (req, res) => {
     issue_type: req.body.issue_type || /.*/g,
     num_complaints: req.body.num_complaints || /.*/g
   }
-
+  console.log(params.location);
   Issue.aggregate([
     { $geoNear: {
       near: {
