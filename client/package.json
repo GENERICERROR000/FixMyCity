@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "google-maps-react": "^1.1.0",
     "react": "^15.6.1",
+    "react-async-script-loader": "^0.3.0",
     "react-dom": "^15.6.1",
     "react-geosuggest": "^2.3.6",
     "react-redux": "^5.0.5",
