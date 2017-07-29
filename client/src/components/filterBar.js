@@ -6,7 +6,7 @@ import '../css/filter_bar.css'
 
 class FilterBar extends Component {
   state = {
-    location: [],
+    location: '',
     start_date: '',
     end_date: '',
     issue_type: '',

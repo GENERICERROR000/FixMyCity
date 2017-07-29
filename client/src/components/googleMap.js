@@ -11,6 +11,7 @@ export class MapContainer extends Component {
   render() {
   let lat = this.props.data.location.coordinates[0]
   let lng = this.props.data.location.coordinates[1]
+  console.log(lat, lng);
     return (
       <Map className='map' google={this.props.google} zoom={16} style={this.style} initialCenter={{lat: lat, lng: lng}}>
         <Marker
