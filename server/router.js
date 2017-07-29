@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken'),
   Issues = require('./controllers/issues')
 
 // ########## Connect Routes With Controllers ##########
-module.exports = (app) => {
+module.exports = (app, http) => {
   // ----------> Unprotected Routes <----------
   app.get('/', (req, res) => {
     res.send("<h1>THIS IS A TEMPORARY HOMEPAGE</h1>")

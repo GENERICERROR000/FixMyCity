@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const socket = require('../server')
 
 const issueSchema = new Schema({
   posted_by: {
@@ -52,8 +53,9 @@ const issueSchema = new Schema({
 
 issueSchema.index({ "location": "2dsphere" })
 
-issueSchema.post('save', (issue) => {
-  console.log(issue)
+issueSchema.post('save', (tweet) => {
+  const io = socket.activeSocket()
+  io.emit('tweet', {tweet: tweet})
 })
 
 const Issue = mongoose.model('issue', issueSchema)
