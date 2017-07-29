@@ -9,7 +9,7 @@ class Home extends Component {
     stream: []
   }
   // TODO: USE REDUX STATE
-  componentWillMount() {
+  componentWillMount = () => {
     socket.emit('connection')
 
     socket.on('tweet', (tweet) => {
@@ -19,12 +19,19 @@ class Home extends Component {
     })
   }
 
+  loadingTweets = () => {
+    if (this.state.stream[0]) {
+      return this.state.stream.map((tweet, i) => <Tweet key={i} data={tweet}/>)
+    } else {
+      return <h2>Nobody has tweeted anything yet...</h2>
+    }
+  }
+
   render() {
-    const tweets = this.state.stream.map((tweet, i) => <Tweet key={i} data={tweet}/>)
     return (
       <div>
         <h1>People Reporting Right Now!</h1>
-        {tweets}
+        {this.loadingTweets()}
       </div>
     )
   }
