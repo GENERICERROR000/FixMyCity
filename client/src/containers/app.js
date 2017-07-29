@@ -6,6 +6,7 @@ import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
 import Home from '../containers/home'
 import Issues from '../containers/issues'
+import Data from '../containers/data'
 import NotFound from '../components/404'
 import { connect } from 'react-redux'
 
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/issues' render={() => this.check(Issues)} />
+            <Route exact path='/data' render={() => this.check(Data)} />
             <Route path='*' component={NotFound} />
           </Switch>
         </div>

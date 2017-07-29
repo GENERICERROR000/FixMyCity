@@ -11,6 +11,7 @@ class Navbar extends Component {
         <Menu.Item position='right'>
           <Link to='/signout'><Button className="nav-button">Sign Out</Button></Link>
           <Link to='/issues'><Button className="nav-button">Issues</Button></Link>
+          <Link to='/data'><Button className="nav-button">Data</Button></Link>
         </Menu.Item>
       )
     } else {
