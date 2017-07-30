@@ -7,7 +7,7 @@ const bodyParser = require('body-parser'),
   io = require('socket.io')(http),
   config = require('./configs/config'),
   router = require('./router'),
-  twit = require('./configs/twit_config')
+  twit = require('./controllers/twit')
 
 // ----------> Export Socket <----------
 exports.activeSocket = () => {

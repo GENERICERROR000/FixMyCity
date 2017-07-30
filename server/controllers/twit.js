@@ -1,4 +1,3 @@
-// TODO: Moce to controllers folder
 const twit = require('twit')
 const Issue = require('../models/Issue')
 

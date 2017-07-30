@@ -5,7 +5,7 @@ import { Container, Grid } from 'semantic-ui-react'
 import { getIssues, displayIssue, clearIssues } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filterBar'
-import MoreInfo from '../components/moreInfo'
+import DisplayIssue from '../components/displayIssue'
 import '../css/issues.css'
 
 class Issues extends Component {
@@ -27,7 +27,7 @@ class Issues extends Component {
 
   loadingMoreInfo = () => {
     if (this.props.issue) {
-      return <MoreInfo data={this.props.issue}/>
+      return <DisplayIssue data={this.props.issue}/>
     } else {
       return (
         <div>
