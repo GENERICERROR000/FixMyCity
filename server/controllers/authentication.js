@@ -31,24 +31,48 @@ exports.signin = (req, res) => {
   const password = req.body.password
   if (!email || !password) {
     return res.status(422).send({
+      success: false,
       error: 'You must provide email and password'
     })
   }
 
   User.findOne({ email: email }, (err, existingUser) => {
-    if (err) { return next(err) } // TODO: WHAT TO DO ABOUT THESES ERRORS (SAME IN SIGNIN)
+    if (err) {
+      return res.status(422).send({
+        success: false,
+        error: 'Something went wrong'
+      })
+    }
 
     if (!existingUser) {
       return res.status(422).send({
+        success: false,
         error: 'User not Found'
       })
     }
 
-    const token = jwt.sign(existingUser, config.secret)
+    existingUser.comparePassword(password, existingUser.password, (err, isMatch) => {
+      if (err) {
+        return res.status(422).send({
+          success: false,
+          error: 'Something went wrong'
+        })
+      }
+  
+      if (isMatch) {
+        const token = jwt.sign(existingUser, config.secret)
 
-    res.send({
-      success: true,
-      token: token
+         return res.send({
+          success: true,
+          token: token
+        })
+      } else {
+        return res.status(422).send({
+          success: false,
+          error: 'Incorrect password'
+        })
+      }
+
     })
   })
 }

@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 
 class App extends Component {
 
-  check = (Component) => {
+  checkAuth = (Component) => {
     return this.props.authenticated ? <Component /> : <Redirect to="/" />
   }
 
@@ -26,8 +26,8 @@ class App extends Component {
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/issues' render={() => this.check(Issues)} />
-            <Route exact path='/data' render={() => this.check(Data)} />
+            <Route exact path='/issues' render={() => this.checkAuth(Issues)} />
+            <Route exact path='/data' render={() => this.checkAuth(Data)} />
             <Route path='*' component={NotFound} />
           </Switch>
         </div>

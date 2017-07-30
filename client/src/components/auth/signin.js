@@ -10,16 +10,6 @@ class Signin extends Component {
     password: ''
   }
 
-  static contextTypes = {
-    router: PropTypes.object
-  }
-
-  componentWillUpdate(nextProps) {
-    if (nextProps.authenticated) {
-      this.context.router.history.push('/')
-    }
-  }
-
   changeHandler = event => {
     this.setState({
       [event.target.name]: event.target.value

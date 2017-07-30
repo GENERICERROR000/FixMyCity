@@ -60,8 +60,8 @@ userSchema.pre('save', (next) => {
   })
 })
 
-userSchema.methods.comparePassword = (candidatePassword, callback) => {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+userSchema.methods.comparePassword = (candidatePassword, userPassword, callback) => {
+  bcrypt.compare(candidatePassword, userPassword, (err, isMatch) => {
     if (err) {
       return callback(err)
     }
