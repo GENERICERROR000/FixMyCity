@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import Charts from '../components/charts'
 
 class Data extends Component {
   state = {}
 
   render() {
     return (
-      <div>TEST</div>
+      <div>
+        <Charts />
+      </div>
     )
   }
 }

@@ -11,10 +11,12 @@ class Issue extends Component {
     return (
       <div>
         <div className="divider" />
-        <h2>{this.props.data.posted_by}</h2>
-        <h4>{this.props.data.posted_on}</h4>
-        <h4>{this.props.data.tweet_content}</h4>
-        <Button className="submit-button" onClick={this.displayIssue}>More Info</Button>
+        <div className="wrapper">
+          <h2>@{this.props.data.posted_by}</h2>
+          <h4>{this.props.data.posted_on}</h4>
+          <h4>{this.props.data.tweet_content}</h4>
+          <Button className="submit-button" onClick={this.displayIssue}>More Info</Button>
+        </div>
       </div>
     )
   }

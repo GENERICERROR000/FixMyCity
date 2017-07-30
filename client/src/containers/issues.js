@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Container, Grid } from 'semantic-ui-react'
 import { getIssues, displayIssue, clearIssues } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filterBar'
@@ -32,7 +31,6 @@ class Issues extends Component {
       return (
         <div>
           <h2>Please Select A Tweet To See More Info</h2>
-          <div className="divider" />
         </div>
       )
     }
@@ -44,23 +42,16 @@ class Issues extends Component {
 
   render = () => {
     return (
-      <div>
-        <FilterBar applyFilter={this.applyFilter} />
-        <Grid celled>
-          <Grid.Row centered >
-            <Grid.Column width={4}>
-              <Container className="content scroll">
-                {this.loadingTweets()}
-                <div className="divider" />
-              </Container>
-            </Grid.Column>
-            <Grid.Column width={12}>
-              <Container className="content">
-                {this.loadingMoreInfo()}
-              </Container>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+      <div className="grid">
+        <div className="filter">
+          <FilterBar applyFilter={this.applyFilter} />
+        </div>
+        <div className="content">
+          {this.loadingTweets()}
+        </div>
+        <div className="content">
+          {this.loadingMoreInfo()}
+        </div>
       </div>
     )
   }
