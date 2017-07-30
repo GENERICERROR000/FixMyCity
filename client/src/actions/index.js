@@ -1,8 +1,8 @@
-// TODO: MOVE AXIOS CALLS TO ADAPTER FILE
+// TODO: MOVE AXIOS CALLS TO TASK SPECIFIC FILES
 // TODO: DO THE ".catch()"'S  ACTUALLY WORK?
 
 import axios from 'axios'
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DID_GET_ISSUE } from './action_types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DID_GET_ISSUE, REMOVE_ISSUES } from './action_types'
 
 const ROOT_URL = 'http://localhost:3000/api/v1/'
 
@@ -74,6 +74,10 @@ export const getIssue = (id) => {
         dispatch(authError(res.error))
       })
     }
+}
+
+export const clearIssues = () => {
+  return { type: REMOVE_ISSUES }
 }
 
 export  const authError = (error) => {

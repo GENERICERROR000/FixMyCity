@@ -36,7 +36,6 @@ const userSchema = new Schema({
 })
 
 // On Save Hook, encrypt password
-// Before saving a model, run this function
 userSchema.pre('save', (next) => {
   // get access to the user model
   const user = this

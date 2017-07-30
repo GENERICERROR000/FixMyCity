@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Container, Grid } from 'semantic-ui-react'
-import { getIssues } from '../actions/index'
+import { getIssues, clearIssues } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filterBar'
 import MoreInfo from '../components/moreInfo'
@@ -13,10 +13,10 @@ class Issues extends Component {
     displayTweet: ''
   }
 
-  // TODO: MAKE THIS
-  // componentWillUnmount = () => {
-  //   // Fire action to clear the store
-  // }
+
+  componentWillUnmount = () => {
+    this.props.clearIssues()
+  }
 
   loadingTweets = () => {
     if (this.props.issues[0]) {
@@ -80,7 +80,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getIssues: getIssues
+    getIssues: getIssues,
+    clearIssues: clearIssues
   }, dispatch)
 }
 
