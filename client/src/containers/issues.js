@@ -2,33 +2,32 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Container, Grid } from 'semantic-ui-react'
-import { getIssues, clearIssues } from '../actions/index'
+import { getIssues, displayIssue, clearIssues } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filterBar'
 import MoreInfo from '../components/moreInfo'
 import '../css/issues.css'
 
 class Issues extends Component {
-  state = {
-    displayTweet: ''
-  }
-
-
   componentWillUnmount = () => {
     this.props.clearIssues()
   }
 
   loadingTweets = () => {
     if (this.props.issues[0]) {
-      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} loadTweet={this.loadTweet}/> })
+      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} displayIssue={this.displayIssue}/> })
     } else {
       return <h2>Please Select Filters and/or Click "Submit"</h2>
     }
   }
 
+  displayIssue = (data) => {
+    this.props.displayIssue(data)
+  }
+
   loadingMoreInfo = () => {
-    if (this.state.displayTweet) {
-      return <MoreInfo data={this.state.displayTweet}/>
+    if (this.props.issue) {
+      return <MoreInfo data={this.props.issue}/>
     } else {
       return (
         <div>
@@ -43,14 +42,7 @@ class Issues extends Component {
     this.props.getIssues(filterInput)
   }
 
-  // TODO: SWITCH TO USING REDUX STATE INSTEAD
-  loadTweet = (data) => {
-    this.setState({
-      displayTweet: data
-    })
-  }
-
-  render() {
+  render = () => {
     return (
       <div>
         <FilterBar applyFilter={this.applyFilter} />
@@ -75,12 +67,16 @@ class Issues extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {issues: state.issues}
+  return {
+    issues: state.issues,
+    issue: state.displayIssue
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getIssues: getIssues,
+    displayIssue: displayIssue,
     clearIssues: clearIssues
   }, dispatch)
 }

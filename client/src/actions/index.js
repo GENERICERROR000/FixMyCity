@@ -2,7 +2,7 @@
 // TODO: DO THE ".catch()"'S  ACTUALLY WORK?
 
 import axios from 'axios'
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DID_GET_ISSUE, REMOVE_ISSUES } from './action_types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DISPLAY_ISSUE, REMOVE_ISSUES } from './action_types'
 
 const ROOT_URL = 'http://localhost:3000/api/v1/'
 
@@ -61,19 +61,11 @@ export const getIssues = (filterInput) => {
   }
 }
 
-export const getIssue = (id) => {
-  const URL = `${ROOT_URL}issues/${id}`
-
-  return (dispatch) => {
-    axios.get(URL, { headers: {'x-access-token': localStorage.jwt} })
-      .then(issue => dispatch({
-        type: DID_GET_ISSUE,
-        payload: issue
-      }))
-      .catch(res => {
-        dispatch(authError(res.error))
-      })
-    }
+export const displayIssue = (issue) => {
+  return {
+    type: DISPLAY_ISSUE,
+    payload: issue
+  }
 }
 
 export const clearIssues = () => {
