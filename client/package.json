@@ -12,6 +12,7 @@
     "react-chartjs-2": "^2.5.5",
     "react-dom": "^15.6.1",
     "react-geosuggest": "^2.3.6",
+    "react-medium-image-zoom": "^1.0.3",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
