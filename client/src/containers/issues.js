@@ -14,11 +14,8 @@ class Issues extends Component {
   }
 
   loadingTweets = () => {
-    if (this.props.issues[0]) {
-      return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} displayIssue={this.displayIssue}/> })
-    } else {
-      return <h2>Please Select Filters and/or Click "Submit"</h2>
-    }
+    if (this.props.issues[0]) return this.props.issues.map((issue, i) => { return <Issue key={i} data={issue} displayIssue={this.displayIssue}/> })
+    return <h2>Please Select Filters and/or Click "Submit"</h2>
   }
 
   displayIssue = (data) => {
@@ -26,15 +23,8 @@ class Issues extends Component {
   }
 
   loadingMoreInfo = () => {
-    if (this.props.issue) {
-      return <DisplayIssue data={this.props.issue}/>
-    } else {
-      return (
-        <div>
-          <h2>Please Select A Tweet To See More Info</h2>
-        </div>
-      )
-    }
+    if (this.props.issue) return <DisplayIssue data={this.props.issue}/>
+    return <div><h2>Please Select A Tweet To See More Info</h2></div>
   }
 
   applyFilter = (filterInput) => {

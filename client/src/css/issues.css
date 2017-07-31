@@ -88,15 +88,19 @@
 }
 
 .submit-button {
-  color: #ffffff !important;
+  color: #5595CD !important;
   background: #FFD08D !important;
   border-color: #FFD08D !important;
   border-radius: 0px !important;
   width: 100% !important;
 }
 
+.popup {
+  height: 80px;
+}
+
 .submit-button:hover {
-  color: #FFD08D !important;
+  color: #F7AF8A !important;
   border-color: #ffffff !important;
   background-color: #ffffff !important;
 }

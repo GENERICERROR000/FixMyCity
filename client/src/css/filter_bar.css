@@ -9,7 +9,7 @@
   box-shadow: 0 0 1px #3d464d;
   padding: .3em 1em;
   -webkit-transition: border 0.2s, box-shadow 0.2s;
-          transition: border 0.2s, box-shadow 0.2s;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
 .date:focus {
@@ -18,7 +18,7 @@
 }
 
 .submit-button-filter {
-  color: #ffffff !important;
+  color: #267dc0 !important;
   background: #FFD08D !important;
   border-color: #FFD08D !important;
   border-radius: 0px !important;
@@ -26,7 +26,7 @@
 }
 
 .submit-button-filter:hover {
-  color: #FFD08D !important;
+  color: #F7AF8A !important;
   border-color: #ffffff !important;
   background-color: #ffffff !important;
 }
@@ -36,7 +36,6 @@
   font-size: 1rem;
   position: relative;
   width: 100%;
-  /*margin: 1em auto;*/
   text-align: left;
 }
 

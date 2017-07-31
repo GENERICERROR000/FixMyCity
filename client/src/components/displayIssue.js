@@ -12,21 +12,19 @@ const MoreInfo = (props) => {
       <ImageZoom key={key}
         image={{
           src: `${src}`,
-          alt: 'No Photos Provided',
+          alt: 'Tweet/Image May Have Been Removed',
           className: 'pic',
         }}
         zoomImage={{
           src: `${src}`,
-          alt: 'No Photos Provided'
+          alt: 'Tweet/Image May Have Been Removed'
         }}
       />
     )
   }
 
   this.images = () => {
-    if (props.data.media) {
-      return props.data.media.map((src, i) => this.imageZoom(src, i))
-    }
+    if (props.data.media) return props.data.media.map((src, i) => this.imageZoom(src, i))
     return <h6>[No Photos Provided]</h6>
   }
 
