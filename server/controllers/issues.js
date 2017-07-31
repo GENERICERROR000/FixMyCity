@@ -10,25 +10,32 @@ exports.filteredIssues = (req, res) => {
   }
 
   Issue.aggregate([
-    { $geoNear: {
+    {
+      $geoNear: {
       near: {
-       type: "Point",
+        type: "Point",
         coordinates: params.location
       },
       distanceField: "distance",
       spherical: true,
       maxDistance: (req.body.location ? 35000 : 13000000)
-    }},
-      {$match: {posted_on: {$gt: params.start_date, $lt: params.end_date}}}
-    ], (err, issues) => {
-      if (err) {
-        return res.status(422).send({
-          success: false,
-          error: 'Issues not found'
-        })
-      } else {
-        res.send(issues)
       }
+    },
+    {
+      $match: {posted_on: {$gt: params.start_date, $lt: params.end_date}}
+    },
+    {
+      $sort : {posted_on : -1} 
     }
+
+  ], (err, issues) => {
+    if (err) {
+      return res.status(422).send({
+        success: false,
+        error: 'Issues not found'
+      })
+    } else {
+      res.send(issues)
+    }}
   )
 }

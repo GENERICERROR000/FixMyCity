@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 import Tweet from '../components/tweet'
+import '../css/home.css'
 
 const socket = io('http://localhost:3000/')
 
@@ -8,13 +9,14 @@ class Home extends Component {
   state = {
     stream: []
   }
+
   // TODO: USE REDUX STATE
   componentWillMount = () => {
     socket.emit('connection')
 
     socket.on('tweet', (tweet) => {
       this.setState({
-        stream: [...this.state.stream, tweet]
+        stream: [tweet, ...this.state.stream]
       })
     })
   }
