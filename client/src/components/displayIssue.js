@@ -4,22 +4,28 @@ import ImageZoom from 'react-medium-image-zoom'
 import GoogleMap from './googleMap'
 
 // TODO: Make sure Media can handle multiple Images
+// TODO: Show actual adrdress from tweet
 
 const MoreInfo = (props) => {
   this.images = () => {
-    return (
-      <ImageZoom
-        image={{
-          src: `${props.data.media}`,
-          alt: 'No Pictures Provided',
-          className: 'pic',
-        }}
-        zoomImage={{
-          src: `${props.data.media}`,
-          alt: 'No Pictures Provided'
-        }}
-      />
-    )
+    if (props.data.media) {
+      return (
+        <ImageZoom
+          image={{
+            src: `${props.data.media}`,
+            alt: 'No Photos Provided',
+            className: 'pic',
+          }}
+          zoomImage={{
+            src: `${props.data.media}`,
+            alt: 'No Photos Provided'
+          }}
+        />
+      )
+    } else {
+      return <h6>[No Photos Provided]</h6>
+    }
+
   }
 
   this.convertDate = () => {

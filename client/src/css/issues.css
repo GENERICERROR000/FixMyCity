@@ -3,6 +3,7 @@
   grid-gap: 15px;
 	grid-template-columns: 25% 75%;
   margin: 2em 3em 2em 2em;
+  overflow: hidden;
 }
 
 .filter {
@@ -25,7 +26,7 @@
 
 .divider {
   height: 5px;
-  width: 97%;
+  width: 16em;
   margin: 0 auto;
   background: #F7AF8A;
 }
@@ -47,7 +48,7 @@
 
 .user {
   display: flex;
-    align-items: center
+  align-items: center
 }
 
 .head-img {
@@ -75,6 +76,15 @@
   height: 25em;
 }
 
+.marker {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #F7AF8A;
+  border-radius: 20px;
+  background-color: #FFD08D;
+  cursor: pointer;
+}
+
 .submit-button {
   color: #ffffff !important;
   background: #FFD08D !important;
@@ -87,4 +97,16 @@
   color: #FFD08D !important;
   border-color: #ffffff !important;
   background-color: #ffffff !important;
+}
+
+.content::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #5595CD;
+}
+
+.content::-webkit-scrollbar-track {
+  visibility: hidden;
 }

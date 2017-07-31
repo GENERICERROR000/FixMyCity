@@ -46,9 +46,9 @@ class Issues extends Component {
         <div className="filter">
           <FilterBar applyFilter={this.applyFilter} />
         </div>
-        <div className="content">
-          {this.loadingTweets()}
-        </div>
+          <div className="content">
+            {this.loadingTweets()}
+          </div>
         <div className="content">
           {this.loadingMoreInfo()}
         </div>
