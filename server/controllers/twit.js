@@ -18,7 +18,11 @@ module.exports = () => {
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
     // TODO: CHECK MEDIA TO SEE IF IMG VS VIDEO
-    const media = tweet.entities.media ? tweet.entities.media[0].media_url_https : ''
+
+    const media = () => {
+      if(tweet.extended_entities) return tweet.extended_entities.media.map(img => img.media_url_https)
+      return ''
+    }
 
     const issue = new Issue ({
       posted_by: tweet.user.screen_name,
@@ -26,7 +30,7 @@ module.exports = () => {
       profile_image: tweet.user.profile_image_url_https,
       posted_on: new Date(tweet.created_at),
       tweet_content: tweet.text,
-      media: media,
+      media: media(),
       location: {
         coordinates: tweet.geo.coordinates
       }

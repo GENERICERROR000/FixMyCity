@@ -7,24 +7,27 @@ import GoogleMap from './googleMap'
 // TODO: Show actual adrdress from tweet
 
 const MoreInfo = (props) => {
+  this.imageZoom = (src, key) => {
+    return (
+      <ImageZoom key={key}
+        image={{
+          src: `${src}`,
+          alt: 'No Photos Provided',
+          className: 'pic',
+        }}
+        zoomImage={{
+          src: `${src}`,
+          alt: 'No Photos Provided'
+        }}
+      />
+    )
+  }
+
   this.images = () => {
     if (props.data.media) {
-      return (
-        <ImageZoom
-          image={{
-            src: `${props.data.media}`,
-            alt: 'No Photos Provided',
-            className: 'pic',
-          }}
-          zoomImage={{
-            src: `${props.data.media}`,
-            alt: 'No Photos Provided'
-          }}
-        />
-      )
-    } else {
-      return <h6>[No Photos Provided]</h6>
+      return props.data.media.map((src, i) => this.imageZoom(src, i))
     }
+    return <h6>[No Photos Provided]</h6>
   }
 
   this.convertDate = () => {

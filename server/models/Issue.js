@@ -23,10 +23,10 @@ const issueSchema = new Schema({
     type: String,
     required: true
   },
-  media: {
+  media: [{
     type: String,
     required: false
-  },
+  }],
   issue: {
     type: String,
     required: false
