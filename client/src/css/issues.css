@@ -26,7 +26,7 @@
 
 .divider {
   height: 5px;
-  width: 16em;
+  width: 97%;
   margin: 0 auto;
   background: #F7AF8A;
 }
@@ -72,17 +72,18 @@
 .map {
   margin-top: 11px;
   grid-column: 2 / 3;
-  width: 25em;
+  width: 97%;
   height: 25em;
 }
 
 .marker {
-  width: 20px;
-  height: 20px;
-  border: 3px solid #F7AF8A;
-  border-radius: 20px;
-  background-color: #FFD08D;
+  height: 30px;
   cursor: pointer;
+  transition: all 1s;
+}
+
+.marker:hover {
+  transform: scale(1.6);
 }
 
 .submit-button {
@@ -103,7 +104,7 @@
   width: 0.7em;
 }
 
-.content::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb:hover {
   background: #5595CD;
 }
 

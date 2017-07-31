@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getIssues, displayIssue, clearIssues } from '../actions/index'
+import { getIssues, displayIssue, clearIssues, clearDisplay } from '../actions/index'
 import Issue from '../components/issue'
 import FilterBar from '../components/filterBar'
 import DisplayIssue from '../components/displayIssue'
@@ -10,6 +10,7 @@ import '../css/issues.css'
 class Issues extends Component {
   componentWillUnmount = () => {
     this.props.clearIssues()
+    this.props.clearDisplay()
   }
 
   loadingTweets = () => {
@@ -68,7 +69,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getIssues: getIssues,
     displayIssue: displayIssue,
-    clearIssues: clearIssues
+    clearIssues: clearIssues,
+    clearDisplay: clearDisplay
   }, dispatch)
 }
 

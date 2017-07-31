@@ -25,7 +25,6 @@ const MoreInfo = (props) => {
     } else {
       return <h6>[No Photos Provided]</h6>
     }
-
   }
 
   this.convertDate = () => {

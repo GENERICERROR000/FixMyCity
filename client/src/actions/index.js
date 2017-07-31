@@ -2,7 +2,7 @@
 // TODO: DO THE ".catch()"'S  ACTUALLY WORK?
 
 import axios from 'axios'
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DISPLAY_ISSUE, REMOVE_ISSUES } from './action_types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DISPLAY_ISSUE, REMOVE_ISSUES, REMOVE_DISPLAY_ISSUE } from './action_types'
 
 const ROOT_URL = 'http://localhost:3000/api/v1/'
 
@@ -70,6 +70,10 @@ export const displayIssue = (issue) => {
 
 export const clearIssues = () => {
   return { type: REMOVE_ISSUES }
+}
+
+export const clearDisplay = () => {
+  return { type: REMOVE_DISPLAY_ISSUE }
 }
 
 export  const authError = (error) => {
