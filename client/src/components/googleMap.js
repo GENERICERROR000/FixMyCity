@@ -1,27 +1,19 @@
 import React, { Component } from 'react'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
+// import {Map, Marker, GoogleApiWrapper} 'from 'google-maps-react'
+import Map from 'google-map-react'
 
-export class MapContainer extends Component {
-
-  style = {
-    width: '300px',
-    height: '300px'
-  }
-
+export class GoogleMap extends Component {
   render() {
-  let lat = this.props.data.location.coordinates[0]
-  let lng = this.props.data.location.coordinates[1]
+    let coor = [ this.props.data.location.coordinates[0], this.props.data.location.coordinates[1] ]
     return (
-      <Map className='map' google={this.props.google} zoom={16} style={this.style} initialCenter={{lat: lat, lng: lng}}>
-        <Marker
-          title={'Issue'}
-          name={'issue'}
-          position={{lat: lat, lng: lng}} />
+      <Map center={coor} zoom={15} style={this.style}>
       </Map>
     )
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyAMjLOSB8OGzVknNO5nLNOE-b0RXYq0qFc')
-})(MapContainer)
+export default GoogleMap
+
+// export default GoogleApiWrapper({
+//   apiKey: ('AIzaSyAMjLOSB8OGzVknNO5nLNOE-b0RXYq0qFc')
+// })(Map)

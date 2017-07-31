@@ -18,7 +18,6 @@ module.exports = () => {
   stream.on('tweet', (tweet) => {
     // TODO: NEED TO TURN ISSUE INTO TAGS WITH FN
     // TODO: CHECK MEDIA TO SEE IF IMG VS VIDEO
-
     const media = tweet.entities.media ? tweet.entities.media[0].media_url_https : ''
 
     const issue = new Issue ({

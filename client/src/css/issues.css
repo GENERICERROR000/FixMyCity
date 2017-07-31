@@ -13,12 +13,10 @@
 .wrapper {
   width: 92%;
   margin: 0 auto;
-  background: #ffffff;
   padding: 1em;
 }
 
 .content {
-  background: #DBDBDB;
   padding: 10px;
   height: 70vh;
   color: #5595CD;
@@ -30,6 +28,52 @@
   width: 97%;
   margin: 0 auto;
   background: #F7AF8A;
+}
+
+.display-grid {
+  display: grid;
+  grid-column: 3 / 2;
+  grid-template-columns: 50% 50%;
+  margin: 1em 1em 1em 1.5em;
+  grid-gap: 15px;
+
+}
+
+.info {
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-rows: 20% 20%
+}
+
+.user {
+  display: flex;
+    align-items: center
+}
+
+.head-img {
+  float: left;
+  margin-right: 5px;
+}
+
+.head-h2 {
+  float: left;
+}
+
+.pic {
+  width: 40%;
+
+}
+
+.pic:active {
+  -webkit-transform: scale(3);
+  transform: scale(3);
+}
+
+.map {
+  margin-top: 11px;
+  grid-column: 2 / 3;
+  width: 25em;
+  height: 25em;
 }
 
 .submit-button {

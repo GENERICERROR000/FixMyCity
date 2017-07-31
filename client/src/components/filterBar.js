@@ -30,15 +30,16 @@ class FilterBar extends Component {
     })
   }
 
-  submitHandler = () => {
-    this.props.applyFilter(this.state)
-  }
-
   locationHandler = (value) => {
     this.setState({
       location: [value.location.lat, value.location.lng]
     })
   }
+
+  submitHandler = () => {
+    this.props.applyFilter(this.state)
+  }
+
 
   loading = () => {
     if (this.props.isScriptLoadSucceed) {
