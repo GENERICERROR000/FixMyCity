@@ -61,7 +61,8 @@
 }
 
 .pic {
-  width: 40%;
+  width: 25%;
+  padding: 5px
 }
 
 .pic:hover {
