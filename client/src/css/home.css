@@ -1,0 +1,47 @@
+.divider {
+  height: 5px;
+  width: 100%;
+  background: #F7AF8A;
+}
+
+.panel {
+  margin: 25px 5em 1vh 5em;
+  padding: 25px;
+  outline-style: dashed;
+  outline-width: 10px;
+  outline-color: #FFD08D;
+  height: 85vh;
+}
+
+.title {
+  text-align: center;
+  color: #5595CD;
+}
+
+.feed {
+  margin: 3vh 0 1vh 0;
+  color: #5595CD;
+}
+
+.head-img {
+  margin-right: 5px;
+}
+
+.scrolling {
+  margin-top: 16px !important;
+  display: block !important;
+  height: 87vh;
+  overflow-y: scroll !important;
+}
+
+.scrolling::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.scrolling::-webkit-scrollbar-thumb {
+  background: #5595CD;
+}
+
+.scrolling::-webkit-scrollbar-track {
+  visibility: hidden;
+}

@@ -43,7 +43,7 @@ const MoreInfo = (props) => {
           </div>
           <div>
             <h3>Posted on: {this.convertDate()}</h3>
-            <h4>{props.data.tweet_content}</h4>
+            <p>{props.data.tweet_content}</p>
             {this.images()}
           </div>
         </div>

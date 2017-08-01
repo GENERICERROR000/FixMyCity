@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import Tweet from '../components/tweet'
 import '../css/home.css'
+import { Grid, Segment } from 'semantic-ui-react'
 
 const socket = io('http://localhost:3000/')
 
@@ -31,10 +32,35 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <h1>People Reporting Right Now!</h1>
-        {this.loadingTweets()}
-      </div>
+      <Grid columns={3}>
+        <Grid.Row>
+          <Grid.Column>
+            <div className="panel">
+              poop
+            </div>
+          </Grid.Column>
+          <Grid.Column className="scrolling">
+            <div className="feed">
+              <h2 className="title">Damage Being Reported Right Now!</h2>
+              {/* {this.loadingTweets()} */}
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+              <Tweet />
+            </div>
+          </Grid.Column>
+          <Grid.Column>
+            <div className="panel">
+
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }
