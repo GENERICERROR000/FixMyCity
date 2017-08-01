@@ -23,14 +23,6 @@ const issueSchema = new Schema({
     type: String,
     required: true
   },
-  media: [{
-    type: String,
-    required: false
-  }],
-  issue: {
-    type: String,
-    required: false
-  },
   location: {
     type: {type: String, default: "Point"},
     coordinates: []
@@ -43,6 +35,9 @@ const issueSchema = new Schema({
     type: Number,
     default: 1
   },
+  media: [{ type: String }],
+  issues: String,
+  notes: String,
   report: String
 }, {
     timestamps: {

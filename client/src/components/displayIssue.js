@@ -46,6 +46,14 @@ const MoreInfo = (props) => {
             <h3>Posted on: {this.convertDate()}</h3>
             <p>{props.data.tweet_content}</p>
             {this.images()}
+            <h4>Status: {props.data.status.toUpperCase()}</h4>
+            <h4>Notes: {props.data.notes ? props.data.notes : ''}</h4>
+            <Button className="info-button">Add Issues/Notes</Button>
+            <Button className="info-button">Change Status</Button>
+            <br/>
+            <br/>
+            <Button className="info-button">Report</Button>
+            <Button className="delete-button">Delete</Button>
           </div>
         </div>
         <div className="map">
