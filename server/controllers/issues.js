@@ -1,31 +1,35 @@
 const Issue = require('../models/Issue')
 
 exports.filteredIssues = (req, res) => {
-  const params = {
-    location: req.body.location || [0, 0] ,
-    start_date: (req.body.start_date ? new Date(req.body.start_date) : new Date('4/21/2006')),
-    end_date: (req.body.end_date ? new Date(req.body.end_date) : new Date(Date.now())),
-    issue_type: req.body.issue_type || /.*/g,
-    num_complaints: req.body.num_complaints || /.*/g
-  }
+  const location = req.body.location || [0, 0],
+    maxDistance = req.body.location ? 35000 : 13000000,
+    start_date = (req.body.start_date ? new Date(req.body.start_date) : new Date('4/21/2006')),
+    end_date = (req.body.end_date ? new Date(req.body.end_date) : new Date(Date.now())),
+    issue_type = req.body.issue_type || /.*/g,
+    num_complaints = req.body.num_complaints || /.*/g,
+    type = req.body.type
+
 
   Issue.aggregate([
     {
       $geoNear: {
       near: {
         type: "Point",
-        coordinates: params.location
+        coordinates: location
       },
       distanceField: "distance",
       spherical: true,
-      maxDistance: (req.body.location ? 35000 : 13000000)
+      maxDistance: maxDistance
       }
     },
     {
-      $match: {posted_on: {$gt: params.start_date, $lt: params.end_date}}
+      $match: {posted_on: {$gt: start_date, $lt: end_date}}
     },
     {
-      $sort : {posted_on : -1} 
+      $match: {status: type}
+    },
+    {
+      $sort : {posted_on : -1}
     }
 
   ], (err, issues) => {

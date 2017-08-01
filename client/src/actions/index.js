@@ -41,16 +41,16 @@ export const signoutUser = () => {
   return { type: UNAUTH_USER }
 }
 
-export const getIssues = (filterInput) => {
-  const location = filterInput.location
-  const start_date = filterInput.start_date
-  const end_date = filterInput.end_date
-  const issue_type = filterInput.issue_type
-  const num_complaints = filterInput.num_complaints
-  const URL = `${ROOT_URL}issues`
+export const getIssues = (filterInput, type) => {
+  const location = filterInput.location,
+    start_date = filterInput.start_date,
+    end_date = filterInput.end_date,
+    issue_type = filterInput.issue_type,
+    num_complaints = filterInput.num_complaints,
+    URL = `${ROOT_URL}issues`
 
   return (dispatch) => {
-    axios.post(URL, {location, start_date, end_date, issue_type, num_complaints}, {headers: {'x-access-token': localStorage.jwt}})
+    axios.post(URL, {location, start_date, end_date, issue_type, num_complaints, type}, {headers: {'x-access-token': localStorage.jwt}})
       .then(res => dispatch({
         type: DID_GET_ISSUES,
         payload: res.data
