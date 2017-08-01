@@ -2,6 +2,7 @@
   height: 5px;
   width: 100%;
   background: #F7AF8A;
+  border-radius: 10px;
 }
 
 .panel {
@@ -43,10 +44,10 @@
 }
 
 .scrolling::-webkit-scrollbar {
-  width: 0.7em;
+  width: 5px;
 }
 
-.scrolling::-webkit-scrollbar-thumb {
+.scrolling::-webkit-scrollbar-thumb:hover {
   background: #5595CD;
 }
 

@@ -29,6 +29,7 @@
   width: 97%;
   margin: 0 auto;
   background: #F7AF8A;
+  border-radius: 10px;
 }
 
 .display-grid {
@@ -106,7 +107,7 @@
 }
 
 .content::-webkit-scrollbar {
-  width: 0.7em;
+  width: 5px;
 }
 
 .content::-webkit-scrollbar-thumb:hover {

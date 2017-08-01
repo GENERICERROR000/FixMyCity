@@ -15,6 +15,7 @@
 // export default tweet
 
 import React from 'react'
+import { Image } from 'semantic-ui-react'
 
 const tweet = (props) => {
   // const data = props.data.tweet
@@ -22,7 +23,7 @@ const tweet = (props) => {
     <div>
       <div className="divider" />
       <div className="wrapper">
-        <img className="head-img" src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt="" />
+        <Image size="mini" avatar className="head-img" src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt="" />
         <h2>@User</h2>
         <h4>Mon, 31 Jul 2017 19:17:59</h4>
         <p>Words words...</p>

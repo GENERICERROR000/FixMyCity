@@ -27,7 +27,7 @@ class Navbar extends Component {
 
   render () {
     return (
-      <Menu className="navbar">
+      <Menu className="navbar" secondary>
         <Menu.Item fitted>
           <Link to='/'><img className="logo" src={logo} /></Link>
         </Menu.Item>
