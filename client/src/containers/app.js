@@ -5,7 +5,10 @@ import Signin from '../components/auth/signin'
 import Signout from '../components/auth/signout'
 import Signup from '../components/auth/signup'
 import Home from '../containers/home'
-import Issues from '../containers/issues'
+import Portal from '../containers/portal'
+import NewIssues from '../containers/NewIssues'
+import ActiveIssues from '../containers/ActiveIssues'
+import ArchivedIssues from '../containers/ArchivedIssues'
 import Data from '../containers/data'
 import NotFound from '../components/404'
 import { connect } from 'react-redux'
@@ -26,7 +29,11 @@ class App extends Component {
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/issues' render={() => this.checkAuth(Issues)} />
+            <Route exact path='/portal' render={() => this.checkAuth(Portal)} />
+            <Route exact path='/issues/new' render={() => this.checkAuth(NewIssues)} />
+            <Route exact path='/issues/active' render={() => this.checkAuth(ActiveIssues)} />
+            <Route exact path='/issues/archive' render={() => this.checkAuth(ArchivedIssues)} />
+            {/* <Route exact path='/issues/create' render={() => this.checkAuth(CreateIssues)} /> */}
             <Route exact path='/data' render={() => this.checkAuth(Data)} />
             <Route path='*' component={NotFound} />
           </Switch>

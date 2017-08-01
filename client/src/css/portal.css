@@ -1,0 +1,26 @@
+.portal-wrapper {
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+  background-color: #FFD08D;
+  padding: 30px;
+}
+
+.portal-col {
+  flex: 1;
+}
+
+.portal-button {
+  font-size: 40px !important;
+  color: #ffffff !important;
+  background: #F7AF8A !important;
+  border-radius: 0px !important;
+  height: 100px;
+  width: 100%;
+  margin: 5px 5px 5px 5px !important;
+}
+
+.portal-button:hover {
+  background-color: #FFD08D !important;
+  border-color: #FFD08D !important;
+}

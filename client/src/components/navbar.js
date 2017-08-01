@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Button, Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import logo from '../media/logo.png'
 import '../css/navbar.css'
 
@@ -10,9 +10,8 @@ class Navbar extends Component {
     if (this.props.authenticated) {
       return (
         <Menu.Item position='right'>
+          <Link to='/portal'><Button className="nav-button">Portal</Button></Link>
           <Link to='/signout'><Button className="nav-button">Sign Out</Button></Link>
-          <Link to='/issues'><Button className="nav-button">Issues</Button></Link>
-          <Link to='/data'><Button className="nav-button">Data</Button></Link>
         </Menu.Item>
       )
     } else {

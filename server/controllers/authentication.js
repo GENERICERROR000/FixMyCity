@@ -51,14 +51,14 @@ exports.signin = (req, res) => {
       })
     }
 
-    existingUser.comparePassword(password, existingUser.password, (err, isMatch) => {
+    existingUser.comparePassword(password, (err, isMatch) => {
       if (err) {
         return res.status(422).send({
           success: false,
           error: 'Something went wrong'
         })
       }
-  
+
       if (isMatch) {
         const token = jwt.sign(existingUser, config.secret)
 

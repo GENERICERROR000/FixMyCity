@@ -9,7 +9,8 @@ import GoogleMap from './googleMap'
 const MoreInfo = (props) => {
   this.imageZoom = (src, key) => {
     return (
-      <ImageZoom key={key}
+      <ImageZoom
+        key={key}
         image={{
           src: `${src}`,
           alt: 'Tweet/Image May Have Been Removed',
