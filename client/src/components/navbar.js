@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Menu } from 'semantic-ui-react'
+import logo from '../media/logo.png'
 import '../css/navbar.css'
 
 class Navbar extends Component {
@@ -27,8 +28,8 @@ class Navbar extends Component {
   render () {
     return (
       <Menu className="navbar">
-        <Menu.Item>
-          <Link to='/'><div className="logo" /></Link>
+        <Menu.Item fitted>
+          <Link to='/'><img className="logo" src={logo} /></Link>
         </Menu.Item>
         {this.renderLinks()}
       </Menu>
