@@ -124,18 +124,17 @@
   background-color: #ffffff !important;
 }
 
-.delete-button {
+.alert-button {
   color: #ffffff !important;
-  background: #E04251 !important;
-  border-color: #E04251 !important;
+  background: #5595CD !important;
+  border-color: #5595CD !important;
   border-radius: 0px !important;
   width: 120px !important;
 }
 
-.delete-button:hover {
-  color: #E04251 !important;
-  border-color: #ffffff !important;
-  background-color: #ffffff !important;
+.alert-button:hover {
+  border-color: #E04251 !important;
+  background-color: #E04251 !important;
 }
 
 .content::-webkit-scrollbar{

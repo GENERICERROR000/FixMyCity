@@ -48,12 +48,13 @@ const MoreInfo = (props) => {
             {this.images()}
             <h4>Status: {props.data.status.toUpperCase()}</h4>
             <h4>Notes: {props.data.notes ? props.data.notes : ''}</h4>
+            <br />
             <Button className="info-button">Add Issues/Notes</Button>
             <Button className="info-button">Change Status</Button>
-            <br/>
-            <br/>
-            <Button className="info-button">Report</Button>
-            <Button className="delete-button">Delete</Button>
+            <br />
+            <br />
+            <Button className="alert-button">Report</Button>
+            <Button className="alert-button">Delete</Button>
           </div>
         </div>
         <div className="map">
