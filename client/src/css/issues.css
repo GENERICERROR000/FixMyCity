@@ -38,13 +38,16 @@
   grid-template-columns: 50% 50%;
   margin: 1em 1em 1em 1.5em;
   grid-gap: 15px;
-
 }
 
-.info {
+.display {
   grid-column: 1 / 2;
   display: grid;
   grid-template-rows: 20% 20%
+}
+
+.info {
+  text-align: left;
 }
 
 .user {
@@ -106,7 +109,7 @@
   background-color: #ffffff !important;
 }
 
-.content::-webkit-scrollbar {
+.content::-webkit-scrollbar{
   width: 5px;
 }
 
@@ -114,6 +117,6 @@
   background: #5595CD;
 }
 
-.content::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track{
   visibility: hidden;
 }

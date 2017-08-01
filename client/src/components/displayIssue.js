@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Image } from 'semantic-ui-react'
 import ImageZoom from 'react-medium-image-zoom'
 import GoogleMap from './googleMap'
 
@@ -36,12 +36,12 @@ const MoreInfo = (props) => {
     <div>
       <div className="divider" />
       <div className="display-grid">
-        <div className="info">
+        <div className="display">
           <div className="user">
-            <img className="head-img" src={props.data.profile_image} alt="" />
+            <Image avatar size="mini" className="head-img" src={props.data.profile_image} alt="" />
             <h2 className="head-h2">@{props.data.posted_by}</h2>
           </div>
-          <div>
+          <div className="info">
             <h3>Posted on: {this.convertDate()}</h3>
             <p>{props.data.tweet_content}</p>
             {this.images()}
