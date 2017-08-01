@@ -5,6 +5,7 @@
 }
 
 .panel {
+  color: #5595CD;
   margin: 25px 5em 1vh 5em;
   padding: 25px;
   outline-style: dashed;
@@ -13,8 +14,15 @@
   height: 85vh;
 }
 
+.panel-header {
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 40px;
+}
+
 .title {
   text-align: center;
+  margin-bottom: 20px;
   color: #5595CD;
 }
 

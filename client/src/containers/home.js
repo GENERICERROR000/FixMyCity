@@ -36,7 +36,16 @@ class Home extends Component {
         <Grid.Row>
           <Grid.Column>
             <div className="panel">
-              poop
+              <h3 className="panel-header">Welcome To FixMyCity!</h3>
+              <p>
+                FixMyCit is an app for government employees to use to track and assign damage reported around a given city.
+              </p>
+              <p>
+                Damage is reported via Twitter by everyday citizens. The goal is to encourage people to be active in maintaining their cities and communities.
+              </p>
+              <p></p>
+              <p></p>
+              <p></p>
             </div>
           </Grid.Column>
           <Grid.Column className="scrolling">
@@ -56,7 +65,10 @@ class Home extends Component {
           </Grid.Column>
           <Grid.Column>
             <div className="panel">
-
+              <h3 className="panel-header">News And Updates</h3>
+              <p></p>
+              <p></p>
+              <p></p>
             </div>
           </Grid.Column>
         </Grid.Row>
