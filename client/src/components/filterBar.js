@@ -14,9 +14,9 @@ class FilterBar extends Component {
   }
   // TODO: USE REDUX STATE INSTEAD
 
-  chnageHandler = (e, input) => {
+  changeHandler = (event) => {
     this.setState({
-      [input.name]: input.value
+      [event.target.name]: event.target.value
     })
   }
 
@@ -35,10 +35,10 @@ class FilterBar extends Component {
       return (
         <Menu borderless widths={4} className="container">
           <Menu.Item>
-            <input name="start_date" type="date" className="date" onChange={this.chnageHandler}/>
+            <input name="start_date" type="date" className="date" onChange={this.changeHandler}/>
           </Menu.Item>
           <Menu.Item>
-            <input name="end_date" type="date" className="date" onChange={this.chnageHandler}/>
+            <input name="end_date" type="date" className="date" onChange={this.changeHandler}/>
           </Menu.Item>
           <Menu.Item>
             <Geosuggest placeholder="Location" country="us" onSuggestSelect={this.locationHandler} />

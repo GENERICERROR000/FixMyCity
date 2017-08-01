@@ -27,6 +27,10 @@
   color: #5595CD;
 }
 
+.center {
+  text-align: center;
+}
+
 .feed {
   margin: 3vh 0 1vh 0;
   color: #5595CD;
