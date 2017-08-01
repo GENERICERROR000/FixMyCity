@@ -111,11 +111,13 @@
 }
 
 .info-button {
+  margin: 5px !important;
   color: #ffffff !important;
   background: #5595CD !important;
   border-color: #5595CD !important;
   border-radius: 0px !important;
   width: 120px !important;
+  height: 50px;
 }
 
 .info-button:hover {
@@ -125,11 +127,13 @@
 }
 
 .alert-button {
+  margin: 5px !important;
   color: #ffffff !important;
   background: #5595CD !important;
   border-color: #5595CD !important;
   border-radius: 0px !important;
   width: 120px !important;
+  height: 50px;
 }
 
 .alert-button:hover {

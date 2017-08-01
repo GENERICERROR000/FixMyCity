@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Image } from 'semantic-ui-react'
+import { Button, Image, Modal } from 'semantic-ui-react'
 import ImageZoom from 'react-medium-image-zoom'
 import GoogleMap from './googleMap'
 
@@ -33,6 +33,19 @@ const MoreInfo = (props) => {
     return new Date(Date.parse(props.data.posted_on)).toUTCString().replace(/\s*(GMT|UTC)$/, "")
   }
 
+  this.deleteModal = () => {
+    return (
+      <Modal trigger={<Button className="alert-button">Delete</Button>} size="mini">
+        <Modal.Header>Header</Modal.Header>
+        <Modal.Content >
+          <Modal.Description>
+            <p>ALL THE WORDS...</p>
+          </Modal.Description>
+        </Modal.Content>
+      </Modal>
+    )
+  }
+
   return (
     <div>
       <div className="divider" />
@@ -49,12 +62,11 @@ const MoreInfo = (props) => {
             <h4>Status: {props.data.status.toUpperCase()}</h4>
             <h4>Notes: {props.data.notes ? props.data.notes : ''}</h4>
             <br />
-            <Button className="info-button">Add Issues/Notes</Button>
-            <Button className="info-button">Change Status</Button>
-            <br />
-            <br />
+            <Button className="info-button">Issues/Notes</Button>
+            <Button className="info-button">Status</Button>
             <Button className="alert-button">Report</Button>
-            <Button className="alert-button">Delete</Button>
+            {this.deleteModal()}
+            {/* <Button className="alert-button">Delete</Button> */}
           </div>
         </div>
         <div className="map">
