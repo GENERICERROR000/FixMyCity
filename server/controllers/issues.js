@@ -43,3 +43,21 @@ exports.filteredIssues = (req, res) => {
     }}
   )
 }
+
+exports.deleteIssue = (req, res) => {
+  const issueID = req.body.id
+
+  Issue.remove({_id: issueID}, (err) => {
+    if (err) {
+      res.send({
+        success: false,
+        message: "Something went wrong"
+      })
+    }
+
+    res.send({
+      success: true,
+      message: "Issue was successfully deleted"
+    })
+  })
+}
