@@ -18,10 +18,9 @@ module.exports = (app, http) => {
 
   // ----------> Protected Routes <----------
   app.post('/api/v1/issues', Issues.filteredIssues)
-  // app.get('/api/v1/issues', Issues.filteredIssues)
+  // app.post('/api/v1/issues/new', )
   // app.put('/api/v1/issues', )
   app.delete('/api/v1/issues', Issues.deleteIssue)
-  // app.post('/api/v1/issues/new', )
 
   // ----------> Set 404 <----------
   app.use((req, res) => {

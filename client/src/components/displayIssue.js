@@ -35,16 +35,30 @@ const MoreInfo = (props) => {
 
   this.deleteModal = () => {
     return (
-      <Modal trigger={<Button className="alert-button">Delete</Button>} size="mini">
-        <Modal.Header>Header</Modal.Header>
-        <Modal.Content >
-          <Modal.Description>
-            <p>ALL THE WORDS...</p>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
+      <Modal
+        size="mini"
+        trigger={<Button className="alert-button">Delete</Button>}
+        content='Are you sure you want to delete this issue?'
+        actions={[
+          { className: "info-button", content: 'Cancel', triggerClose: true },
+          { className: "alert-button", content: 'Delete', triggerClose: true },
+        ]}
+  />
     )
   }
+  // this.deleteModal = () => {
+  //   return (
+  //     <Modal trigger={<Button className="alert-button">Delete</Button>} size="mini">
+  //       <Modal.Content >
+  //         <Modal.Description>
+  //           <p>Are you sure you want to delete this issue?</p>
+  //           <Button className="info-button">Cancel</Button>
+  //           <Button className="alert-button">Delete</Button>
+  //         </Modal.Description>
+  //       </Modal.Content>
+  //     </Modal>
+  //   )
+  // }
 
   return (
     <div>
@@ -60,7 +74,6 @@ const MoreInfo = (props) => {
             <p>{props.data.tweet_content}</p>
             {this.images()}
             <h4>Status: {props.data.status.toUpperCase()}</h4>
-            <h4>Notes: {props.data.notes ? props.data.notes : ''}</h4>
             <br />
             <Button className="info-button">Issues/Notes</Button>
             <Button className="info-button">Status</Button>
