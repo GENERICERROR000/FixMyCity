@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button, Image, Modal } from 'semantic-ui-react'
 import ImageZoom from 'react-medium-image-zoom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import GoogleMap from './googleMap'
+import { deleteIssue, clearDisplay } from '../actions/index'
 
 // TODO: Make sure Media can handle multiple Images
 // TODO: Show actual adrdress from tweet
@@ -34,8 +37,8 @@ const MoreInfo = (props) => {
   }
 
   this.deleteIssue = () => {
-    console.log("poop");
-    // props.delete.deleteIssue(props.data._id)
+    props.deleteIssue(props.data)
+    props.clearDisplay()
   }
 
 
@@ -47,7 +50,7 @@ const MoreInfo = (props) => {
         content='Are you sure you want to delete this issue?'
         actions={[
           { className: "info-button", content: 'Cancel', triggerClose: true },
-          { className: "alert-button", content: 'Delete', onClick: this.deleteIssue },
+          { className: "alert-button", content: 'Delete', triggerClose: true, onClick: this.deleteIssue },
         ]}
       />
     )
@@ -65,15 +68,6 @@ const MoreInfo = (props) => {
   //     </Modal>
   //   )
   // }
-
-  // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-  // 1. Action for deleteIssue method (removed from state of container and redux stuff)
-  // 2. Modals for Issues/Notes, Status, and Report
-  // 3. Routes and actions in server for 3 modals
-  // 4. Client side actions for those modals
-  // 5. Rig three diff issues pages fully
-  // 6. Tweet back and location geocode
-  // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
   return (
     <div>
@@ -106,4 +100,11 @@ const MoreInfo = (props) => {
   )
 }
 
-export default MoreInfo
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    deleteIssue: deleteIssue,
+    clearDisplay: clearDisplay
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(MoreInfo)

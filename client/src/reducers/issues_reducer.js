@@ -1,4 +1,4 @@
-import { DID_GET_ISSUES, REMOVE_ISSUES} from '../actions/action_types'
+import { DID_GET_ISSUES, REMOVE_ISSUES, DELETE_ISSUE } from '../actions/action_types'
 
 export default (state = [], action) => {
   if (action.error) {
@@ -10,6 +10,10 @@ export default (state = [], action) => {
       return [...action.payload]
     case REMOVE_ISSUES:
       return []
+    case DELETE_ISSUE:
+      let issues = [...state]
+      issues.splice(action.payload, 1)
+      return [...issues]
     default:
       return state
   }

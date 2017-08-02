@@ -3,7 +3,9 @@ import { Button, Header } from 'semantic-ui-react'
 
 class Issue extends Component {
   displayIssue = () => {
-    this.props.displayIssue(this.props.data)
+    let data = {...this.props.data}
+    data.index = this.props.index
+    this.props.displayIssue(data)
   }
 
   converDate = () => {

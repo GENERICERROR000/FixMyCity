@@ -45,7 +45,7 @@ exports.filteredIssues = (req, res) => {
 }
 
 exports.deleteIssue = (req, res) => {
-  const issueID = req.body.id
+  const issueID = req.headers['user_id']
 
   Issue.remove({_id: issueID}, (err) => {
     if (err) {
