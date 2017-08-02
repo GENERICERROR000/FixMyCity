@@ -33,6 +33,12 @@ const MoreInfo = (props) => {
     return new Date(Date.parse(props.data.posted_on)).toUTCString().replace(/\s*(GMT|UTC)$/, "")
   }
 
+  this.deleteIssue = () => {
+    console.log("poop");
+    // props.delete.deleteIssue(props.data._id)
+  }
+
+
   this.deleteModal = () => {
     return (
       <Modal
@@ -41,9 +47,9 @@ const MoreInfo = (props) => {
         content='Are you sure you want to delete this issue?'
         actions={[
           { className: "info-button", content: 'Cancel', triggerClose: true },
-          { className: "alert-button", content: 'Delete', triggerClose: true },
+          { className: "alert-button", content: 'Delete', onClick: this.deleteIssue },
         ]}
-  />
+      />
     )
   }
   // this.deleteModal = () => {
@@ -59,6 +65,15 @@ const MoreInfo = (props) => {
   //     </Modal>
   //   )
   // }
+
+  // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+  // 1. Action for deleteIssue method (removed from state of container and redux stuff)
+  // 2. Modals for Issues/Notes, Status, and Report
+  // 3. Routes and actions in server for 3 modals
+  // 4. Client side actions for those modals
+  // 5. Rig three diff issues pages fully
+  // 6. Tweet back and location geocode
+  // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
   return (
     <div>
