@@ -9,15 +9,22 @@ class GoogleMap extends Component {
     address: false
   }
 
-  lat = this.props.data.location.coordinates[0]
-  lng = this.props.data.location.coordinates[1]
-
   componentWillMount = () => {
-    geocoder.reverseGeocode(this.lat, this.lng, (err, data) => {
+    geocoder.reverseGeocode(this.props.data.location.coordinates[0], this.props.data.location.coordinates[1], (err, data) => {
       this.setState({
         address: data.results[0].formatted_address
       })
     })
+  }
+  
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.data.location.coordinates[0] !== nextProps.data.location.coordinates[0]) {
+      geocoder.reverseGeocode(nextProps.data.location.coordinates[0], nextProps.data.location.coordinates[1], (err, data) => {
+        this.setState({
+          address: data.results[0].formatted_address
+        })
+      })
+    }
   }
 
   loading = () => {
@@ -26,13 +33,15 @@ class GoogleMap extends Component {
   }
 
   render = () => {
+    let lat = this.props.data.location.coordinates[0]
+    let lng = this.props.data.location.coordinates[1]
     return (
-      <Map center={[this.lat, this.lng]} zoom={14}>
+      <Map center={[lat, lng]} zoom={14}>
         <Popup
           className="popup"
           hoverable
-          lat={this.lat}
-          lng={this.lng}
+          lat={lat}
+          lng={lng}
           trigger={<img hoverable src={warn} alt="damage" className="marker"/>}
           content={this.loading()}
         />

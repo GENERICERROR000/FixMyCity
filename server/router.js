@@ -3,12 +3,47 @@ const jwt = require('jsonwebtoken'),
   Authentication = require('./controllers/authentication'),
   Issues = require('./controllers/issues')
 
+
+const Issue = require('./models/Issue')
+const faker = require('faker');
+
+
+
 // ########## Connect Routes With Controllers ##########
 module.exports = (app, http) => {
   // ----------> Unprotected Routes <----------
   app.get('/', (req, res) => {
-    res.send("<h1>THIS IS A TEMPORARY HOMEPAGE</h1>")
+    for (var i = 0; i < 1000; i++) {
+      const issue = new Issue ({
+        posted_by: faker.lorem.word(),
+        posted_by_id: 12345,
+        profile_image: "http://loremflickr.com/g/100/100/cornß",
+        posted_on: new Date(Date.now()),
+        tweet_content: faker.lorem.sentence(),
+        status: "new",
+        media: ["http://loremflickr.com/g/320/240/roadwork", "http://loremflickr.com/g/320/240/roadwork"],
+        location: {
+          coordinates: [Number(faker.address.latitude()), Number(faker.address.latitude())]
+        }
+      })
+
+      issue.save((err, newIssue) => {
+        if(err) console.log("Error saving Tweet:", err)
+      })
+    }
+    res.send("<h1>YOU HAVE DATA!</h1>")
+
   })
+
+
+
+
+
+
+
+
+
+
   app.get('/api/v1/auth', Authentication.auth)
   app.post('/api/v1/signin', Authentication.signin)
   app.post('/api/v1/signup', Authentication.signup)

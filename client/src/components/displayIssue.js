@@ -94,7 +94,7 @@ class MoreInfo extends Component {
           </Form>
           <br />
           <Button className="alert-button" onClick={this.cancel}>Cancel</Button>
-          <Button className="info-button" onClick={this.updateIssue}>Apply</Button>
+          <Button className="info-button" onClick={this.updateIssue}>Submit</Button>
         </div>
       )
     }
@@ -109,7 +109,7 @@ class MoreInfo extends Component {
           <Dropdown selection name='status' placeholder={this.props.data.status.toUpperCase()} options={options} onChange={this.changeHandler}/>
           <br />
           <Button className="alert-button" onClick={this.cancel}>Cancel</Button>
-          <Button className="info-button" onClick={this.updateIssue}>Apply</Button>
+          <Button className="info-button" onClick={this.updateIssue}>Submit</Button>
         </div>
       )
     }
@@ -157,7 +157,7 @@ class MoreInfo extends Component {
             </div>
           </div>
           <div className="map">
-            <GoogleMap data={this.props.data}/>
+            <GoogleMap data={this.props.data} />
           </div>
         </div>
         <div className="divider" />

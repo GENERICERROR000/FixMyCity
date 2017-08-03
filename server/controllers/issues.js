@@ -9,7 +9,6 @@ exports.filteredIssues = (req, res) => {
     num_complaints = req.body.num_complaints || /.*/g,
     type = req.body.type
 
-
   Issue.aggregate([
     {
       $geoNear: {
