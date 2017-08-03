@@ -24,7 +24,7 @@ module.exports = () => {
     }
 
     if (!tweet.geo) {
-      const message = `.@${tweet.user.screen_name} It seems your post didn't have a location. Please add your location so we know where the issue is. Thank you!`
+      const message = `.@${tweet.user.screen_name} It seems your post didn't have a location. Please add your precise location so we know where the issue is. Thank you!`
 
       Twitter.post('statuses/update', { status: message }, (err, data, response) => {
           if(err) console.log("Error posting reply Tweet:", err)
