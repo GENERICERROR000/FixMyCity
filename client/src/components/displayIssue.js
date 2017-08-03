@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button, Image, Input, Modal } from 'semantic-ui-react'
+import { Button, Dropdown, Image, Form, TextArea, Modal } from 'semantic-ui-react'
 import ImageZoom from 'react-medium-image-zoom'
 import GoogleMap from './googleMap'
 import { updateIssue, deleteIssue, clearDisplay } from '../actions/index'
 
 // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-// Update is working. Create controlled forms for Modal
-// Also, need to reset display issue after updated
-// Also, reload list on new issues - needs to issue a filter submit - changes filter options to store in redux state so can use those
+// Also, reload list on update issues - needs to do a filter submit - changes filter options to store in redux state so can use those
 // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
+const options = [
+  { key: 'n', value: 'new', text: 'NEW' },
+  { key: 'a', value: 'active', text: 'ACTIVE' },
+  { key: 'c', value: 'completed', text: 'COMPLETED' },
+]
 
 class MoreInfo extends Component {
   state = {
     editNotes: false,
-    changeSatus: false,
+    changeStatus: false,
     editReport: false,
     issue: {
       notes: '',
@@ -61,11 +64,11 @@ class MoreInfo extends Component {
     this.props.clearDisplay()
   }
 
-  changeHandler = (event) => {
+  changeHandler = (e, input) => {
     this.setState({
       issue: {
         ...this.state.issue,
-        [event.target.name]: event.target.value
+        [input.name]: input.value
       }
     })
   }
@@ -77,7 +80,7 @@ class MoreInfo extends Component {
   cancel = () => {
     this.setState({
       editNotes: false,
-      changeSatus: false,
+      changeStatus: false,
       editReport: false
     })
   }
@@ -86,7 +89,9 @@ class MoreInfo extends Component {
     if (this.state.editNotes) {
       return (
         <div>
-          <Input type='text' name='notes' value={this.state.issue.notes} onChange={this.changeHandler} placeholder={this.props.data.notes} />
+          <Form>
+            <TextArea type='text' name='notes' value={this.state.issue.notes} onChange={this.changeHandler} placeholder={this.props.data.notes} style={{ maxWidth:'400px', minHeight: '150px' }}/>
+          </Form>
           <br />
           <Button className="alert-button" onClick={this.cancel}>Cancel</Button>
           <Button className="info-button" onClick={this.updateIssue}>Apply</Button>
@@ -95,6 +100,21 @@ class MoreInfo extends Component {
     }
 
     return <p>{this.props.data.notes}</p>
+  }
+
+  status = () => {
+    if (this.state.changeStatus) {
+      return (
+        <div>
+          <Dropdown selection name='status' placeholder={this.props.data.status.toUpperCase()} options={options} onChange={this.changeHandler}/>
+          <br />
+          <Button className="alert-button" onClick={this.cancel}>Cancel</Button>
+          <Button className="info-button" onClick={this.updateIssue}>Apply</Button>
+        </div>
+      )
+    }
+
+    return <p>{this.props.data.status.toUpperCase()}</p>
   }
 
   deleteModal = () => {
@@ -126,13 +146,13 @@ class MoreInfo extends Component {
               <p>{this.props.data.tweet_content}</p>
               {this.images()}
               <h4>Status:</h4>
-              <p>{this.props.data.status.toUpperCase()}</p>
+              {this.status()}
               <h4>Issues/Notes:</h4>
               {this.notes()}
               <br />
               <Button name="editNotes" className="info-button" onClick={this.edit}>Notes/Issues</Button>
-              <Button className="info-button">Status</Button>
-              <Button className="alert-button">Report</Button>
+              <Button name="changeStatus" className="info-button" onClick={this.edit}>Status</Button>
+              {/* <Button className="alert-button">Report</Button> */}
               {this.deleteModal()}
             </div>
           </div>

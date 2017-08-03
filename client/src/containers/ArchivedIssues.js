@@ -28,7 +28,7 @@ class Issues extends Component {
   }
 
   applyFilter = (filterInput) => {
-    this.props.getIssues(filterInput, "archive")
+    this.props.getIssues(filterInput, "completed")
   }
 
   render = () => {
