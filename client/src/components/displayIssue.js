@@ -46,8 +46,8 @@ class MoreInfo extends Component {
   }
 
   images = () => {
-    if (this.props.data.media) return this.props.data.media.map((src, i) => this.imageZoom(src, i))
-    return <h6>[No Photos Provided]</h6>
+    if (this.props.data.media[0]) return this.props.data.media.map((src, i) => this.imageZoom(src, i))
+    return <h6 className="pic">[No Photos Provided]</h6>
   }
 
   convertDate = () => {
