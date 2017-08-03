@@ -35,7 +35,7 @@ class App extends Component {
             <Route exact path='/issues/active' render={() => this.checkAuth(ActiveIssues)} />
             <Route exact path='/issues/archive' render={() => this.checkAuth(ArchivedIssues)} />
             <Route exact path='/issues/create' render={() => this.checkAuth(CreateIssue)} />
-            <Route exact path='/data' render={() => this.checkAuth(Data)} />
+            {/* <Route exact path='/data' render={() => this.checkAuth(Data)} /> */}
             <Route path='*' component={NotFound} />
           </Switch>
         </div>

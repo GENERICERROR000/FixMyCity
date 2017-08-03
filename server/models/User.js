@@ -36,7 +36,7 @@ const userSchema = new Schema({
 })
 
 // On Save Hook, encrypt password
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function (next) {
   // get access to the user model
   const user = this
 
