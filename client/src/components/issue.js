@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Header } from 'semantic-ui-react'
 
+// TODO: USE REDUX STATE SO DON'T NEED TO PASS METHOD DOWN TO THIS AND THEN PASS DATA BACK UP...
+
 class Issue extends Component {
   displayIssue = () => {
     let data = {...this.props.data}

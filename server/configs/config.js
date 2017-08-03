@@ -5,7 +5,7 @@ module.exports = {
   'headers': (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
-    res.setHeader('Access-Control-Allow-Headers', 'x-access-token, user_id')
+    res.setHeader('Access-Control-Allow-Headers', 'x-access-token, issue_id')
     next()
   }
 }

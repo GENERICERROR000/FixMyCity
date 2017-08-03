@@ -1,16 +1,31 @@
-import React from 'react'
-import { Button, Image, Modal } from 'semantic-ui-react'
-import ImageZoom from 'react-medium-image-zoom'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Button, Image, Input, Modal } from 'semantic-ui-react'
+import ImageZoom from 'react-medium-image-zoom'
 import GoogleMap from './googleMap'
-import { deleteIssue, clearDisplay } from '../actions/index'
+import { updateIssue, deleteIssue, clearDisplay } from '../actions/index'
 
-// TODO: Make sure Media can handle multiple Images
-// TODO: Show actual adrdress from tweet
+// TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+// Update is working. Create controlled forms for Modal
+// Also, need to reset display issue after updated
+// Also, reload list on new issues - needs to issue a filter submit - changes filter options to store in redux state so can use those
+// TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
-const MoreInfo = (props) => {
-  this.imageZoom = (src, key) => {
+
+class MoreInfo extends Component {
+  state = {
+    editNotes: false,
+    changeSatus: false,
+    editReport: false,
+    issue: {
+      notes: '',
+      status: '',
+      report: ''
+    }
+  }
+
+  imageZoom = (src, key) => {
     return (
       <ImageZoom
         key={key}
@@ -27,81 +42,113 @@ const MoreInfo = (props) => {
     )
   }
 
-  this.images = () => {
-    if (props.data.media) return props.data.media.map((src, i) => this.imageZoom(src, i))
+  images = () => {
+    if (this.props.data.media) return this.props.data.media.map((src, i) => this.imageZoom(src, i))
     return <h6>[No Photos Provided]</h6>
   }
 
-  this.convertDate = () => {
-    return new Date(Date.parse(props.data.posted_on)).toUTCString().replace(/\s*(GMT|UTC)$/, "")
+  convertDate = () => {
+    return new Date(Date.parse(this.props.data.posted_on)).toUTCString().replace(/\s*(GMT|UTC)$/, "")
   }
 
-  this.deleteIssue = () => {
-    props.deleteIssue(props.data)
-    props.clearDisplay()
+  updateIssue = () => {
+    this.props.updateIssue(this.props.data._id, this.state.issue)
+    this.cancel()
   }
 
+  deleteIssue = () => {
+    this.props.deleteIssue(this.props.data)
+    this.props.clearDisplay()
+  }
 
-  this.deleteModal = () => {
+  changeHandler = (event) => {
+    this.setState({
+      issue: {
+        ...this.state.issue,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
+  edit = (event) => {
+    this.setState ({ [event.target.name]: true })
+  }
+
+  cancel = () => {
+    this.setState({
+      editNotes: false,
+      changeSatus: false,
+      editReport: false
+    })
+  }
+
+  notes = () => {
+    if (this.state.editNotes) {
+      return (
+        <div>
+          <Input type='text' name='notes' value={this.state.issue.notes} onChange={this.changeHandler} placeholder={this.props.data.notes} />
+          <br />
+          <Button className="alert-button" onClick={this.cancel}>Cancel</Button>
+          <Button className="info-button" onClick={this.updateIssue}>Apply</Button>
+        </div>
+      )
+    }
+
+    return <p>{this.props.data.notes}</p>
+  }
+
+  deleteModal = () => {
     return (
       <Modal
         size="mini"
         trigger={<Button className="alert-button">Delete</Button>}
         content='Are you sure you want to delete this issue?'
         actions={[
-          { className: "info-button", content: 'Cancel', triggerClose: true },
-          { className: "alert-button", content: 'Delete', triggerClose: true, onClick: this.deleteIssue },
+          { key: 'cancel', className: "info-button", content: 'Cancel', triggerClose: true },
+          { key: 'delete', className: "alert-button", content: 'Delete', triggerClose: true, onClick: this.deleteIssue },
         ]}
       />
     )
   }
-  // this.deleteModal = () => {
-  //   return (
-  //     <Modal trigger={<Button className="alert-button">Delete</Button>} size="mini">
-  //       <Modal.Content >
-  //         <Modal.Description>
-  //           <p>Are you sure you want to delete this issue?</p>
-  //           <Button className="info-button">Cancel</Button>
-  //           <Button className="alert-button">Delete</Button>
-  //         </Modal.Description>
-  //       </Modal.Content>
-  //     </Modal>
-  //   )
-  // }
 
-  return (
-    <div>
-      <div className="divider" />
-      <div className="display-grid">
-        <div className="display">
-          <div className="user">
-            <Image avatar size="mini" className="head-img" src={props.data.profile_image} alt="" />
-            <h2 className="head-h2">@{props.data.posted_by}</h2>
+  render = () => {
+    return (
+      <div>
+        <div className="divider" />
+        <div className="display-grid">
+          <div className="display">
+            <div className="user">
+              <Image avatar size="mini" className="head-img" src={this.props.data.profile_image} alt="" />
+              <h2 className="head-h2">@{this.props.data.posted_by}</h2>
+            </div>
+            <div className="info">
+              <h3>Posted on: {this.convertDate()}</h3>
+              <p>{this.props.data.tweet_content}</p>
+              {this.images()}
+              <h4>Status:</h4>
+              <p>{this.props.data.status.toUpperCase()}</p>
+              <h4>Issues/Notes:</h4>
+              {this.notes()}
+              <br />
+              <Button name="editNotes" className="info-button" onClick={this.edit}>Notes/Issues</Button>
+              <Button className="info-button">Status</Button>
+              <Button className="alert-button">Report</Button>
+              {this.deleteModal()}
+            </div>
           </div>
-          <div className="info">
-            <h3>Posted on: {this.convertDate()}</h3>
-            <p>{props.data.tweet_content}</p>
-            {this.images()}
-            <h4>Status: {props.data.status.toUpperCase()}</h4>
-            <br />
-            <Button className="info-button">Issues/Notes</Button>
-            <Button className="info-button">Status</Button>
-            <Button className="alert-button">Report</Button>
-            {this.deleteModal()}
-            {/* <Button className="alert-button">Delete</Button> */}
+          <div className="map">
+            <GoogleMap data={this.props.data}/>
           </div>
         </div>
-        <div className="map">
-          <GoogleMap data={props.data}/>
-        </div>
+        <div className="divider" />
       </div>
-      <div className="divider" />
-    </div>
-  )
+    )
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    updateIssue: updateIssue,
     deleteIssue: deleteIssue,
     clearDisplay: clearDisplay
   }, dispatch)

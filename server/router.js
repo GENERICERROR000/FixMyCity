@@ -19,7 +19,7 @@ module.exports = (app, http) => {
   // ----------> Protected Routes <----------
   app.post('/api/v1/issues', Issues.filteredIssues)
   // app.post('/api/v1/issues/new', )
-  // app.put('/api/v1/issues', )
+  app.put('/api/v1/issues', Issues.updateIssue)
   app.delete('/api/v1/issues', Issues.deleteIssue)
 
   // ----------> Set 404 <----------

@@ -2,7 +2,7 @@
 // TODO: DO THE ".catch()"'S  ACTUALLY WORK?
 
 import axios from 'axios'
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DISPLAY_ISSUE, REMOVE_ISSUES, REMOVE_DISPLAY_ISSUE, DELETE_ISSUE} from './action_types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, DID_GET_ISSUES, DISPLAY_ISSUE, REMOVE_ISSUES, REMOVE_DISPLAY_ISSUE, UPDATE_DISPLAY_ISSUE, DELETE_ISSUE} from './action_types'
 
 const ROOT_URL = 'http://localhost:3000/api/v1/'
 
@@ -68,12 +68,25 @@ export const displayIssue = (issue) => {
   }
 }
 
-export const deleteIssue = (issue) => {
-
+export const updateIssue = (issueID, updatedIssueParts) => {
   const URL= `${ROOT_URL}issues`
+  return (dispatch) => {
+    axios.put(URL, {issueID, updatedIssueParts}, {headers: {'x-access-token': localStorage.jwt}})
+      .then(res => dispatch({
+          type: UPDATE_DISPLAY_ISSUE,
+          payload: res.data
+        }))
+      .catch(res => {
+        dispatch(authError(res.error))
+      })
+  }
+}
+
+export const deleteIssue = (issue) => {
+  const URL = `${ROOT_URL}issues`
 
   return (dispatch) => {
-    axios.delete(URL, {headers: {'x-access-token': localStorage.jwt, 'user_id': issue._id}})
+    axios.delete(URL, {headers: {'x-access-token': localStorage.jwt, 'issue_id': issue._id}})
       .then(res => dispatch({
         type: DELETE_ISSUE,
         payload: issue.index

@@ -1,4 +1,4 @@
-import { DISPLAY_ISSUE, REMOVE_DISPLAY_ISSUE } from '../actions/action_types'
+import { DISPLAY_ISSUE, UPDATE_DISPLAY_ISSUE, REMOVE_DISPLAY_ISSUE } from '../actions/action_types'
 
 export default (state = false, action) => {
   if (action.error) {
@@ -7,6 +7,8 @@ export default (state = false, action) => {
 
   switch (action.type) {
     case DISPLAY_ISSUE:
+      return {...action.payload}
+     case UPDATE_DISPLAY_ISSUE:
       return {...action.payload}
     case REMOVE_DISPLAY_ISSUE:
       return state = false
