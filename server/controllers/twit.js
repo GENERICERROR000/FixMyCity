@@ -23,20 +23,28 @@ module.exports = () => {
       return ''
     }
 
-    const issue = new Issue ({
-      posted_by: tweet.user.screen_name,
-      posted_by_id: tweet.user.id,
-      profile_image: tweet.user.profile_image_url_https,
-      posted_on: new Date(tweet.created_at),
-      tweet_content: tweet.text,
-      media: media(),
-      location: {
-        coordinates: tweet.geo.coordinates
-      }
-    })
+    if (!tweet.geo) {
+      const message = `.@${tweet.user.screen_name} It seems your post didn't have a location. Please add your location so we know where the issue is. Thank you!`
 
-    issue.save((err, newIssue) => {
-      if(err) console.log("Error saving Tweet:", err)
-    })
+      Twitter.post('statuses/update', { status: message }, (err, data, response) => {
+          if(err) console.log("Error posting reply Tweet:", err)
+      })
+    } else {
+      const issue = new Issue ({
+        posted_by: tweet.user.screen_name,
+        posted_by_id: tweet.user.id,
+        profile_image: tweet.user.profile_image_url_https,
+        posted_on: new Date(tweet.created_at),
+        tweet_content: tweet.text,
+        media: media(),
+        location: {
+          coordinates: tweet.geo.coordinates
+        }
+      })
+
+      issue.save((err, newIssue) => {
+        if(err) console.log("Error saving Tweet:", err)
+      })
+    }
   })
 }
