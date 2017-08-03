@@ -13,36 +13,31 @@ const faker = require('faker');
 module.exports = (app, http) => {
   // ----------> Unprotected Routes <----------
   app.get('/', (req, res) => {
-    for (var i = 0; i < 1000; i++) {
-      const issue = new Issue ({
-        posted_by: faker.lorem.word(),
-        posted_by_id: 12345,
-        profile_image: "http://loremflickr.com/g/100/100/cornß",
-        posted_on: new Date(Date.now()),
-        tweet_content: faker.lorem.sentence(),
-        status: "new",
-        media: ["http://loremflickr.com/g/320/240/roadwork", "http://loremflickr.com/g/320/240/roadwork"],
-        location: {
-          coordinates: [Number(faker.address.latitude()), Number(faker.address.latitude())]
-        }
-      })
-
-      issue.save((err, newIssue) => {
-        if(err) console.log("Error saving Tweet:", err)
-      })
-    }
-    res.send("<h1>YOU HAVE DATA!</h1>")
-
+    res.send("<h1>Sample API Hompage - HEHEHEHEHEHEHEHEHEHE</h1>")
   })
 
-
-
-
-
-
-
-
-
+  // app.get('/', (req, res) => {
+  //   for (var i = 0; i < 1000; i++) {
+  //     const issue = new Issue ({
+  //       posted_by: faker.lorem.word(),
+  //       posted_by_id: 12345,
+  //       profile_image: "http://loremflickr.com/g/100/100/cornß",
+  //       posted_on: new Date(Date.now()),
+  //       tweet_content: faker.lorem.sentence(),
+  //       status: "completed",
+  //       media: ["http://loremflickr.com/g/320/240/roadwork", "http://loremflickr.com/g/320/240/roadwork"],
+  //       location: {
+  //         coordinates: [Number(faker.address.latitude()), Number(faker.address.latitude())]
+  //       }
+  //     })
+  //
+  //     issue.save((err, newIssue) => {
+  //       if(err) console.log("Error saving Tweet:", err)
+  //     })
+  //   }
+  //   res.send("<h1>YOU HAVE DATA!</h1>")
+  //
+  // })
 
   app.get('/api/v1/auth', Authentication.auth)
   app.post('/api/v1/signin', Authentication.signin)
