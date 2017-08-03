@@ -44,7 +44,7 @@ class BigMap extends Component {
   loadingMap = () => {
     if (this.props.issues[0]) {
       return (
-        <Map center={[ 40.70785123, -74.01227371]} zoom={14}>
+        <Map center={[ 40.70785123, -74.01227371]} zoom={10}>
           {this.issues()}
         </Map>
       )
