@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Map from 'google-map-react'
 import { Popup } from 'semantic-ui-react'
-import geocoder from 'geocoder'
+// import geocoder from 'geocoder'
 import { getIssues, clearIssues } from '../actions/index'
 import warn from '../media/warn.svg'
 import FilterBar from '../components/filterBar'
@@ -18,21 +18,23 @@ class BigMap extends Component {
     this.props.getIssues(filterInput, "active")
   }
 
-  getAddress = (location) => {
-    geocoder.reverseGeocode(location.coordinates[0], location.coordinates[1], (err, data) => data.results[0].formatted_address)
-  }
+  // getAddress = (location) => {
+  //   if (this.state.address) {
+  //     geocoder.reverseGeocode(location.coordinates[0], location.coordinates[1], (err, data) => data.results[0].formatted_address)
+  //   }
+  //   return "Address Loading..."
+  // }
 
   issues = () => {
    return this.props.issues.map((issue, i) => {
       return (
         <Popup
           key={i}
-          className="popup"
           hoverable
           lat={issue.location.coordinates[0]}
           lng={issue.location.coordinates[1]}
           trigger={<img hoverable src={warn} alt="damage" className="marker"/>}
-          content={this.getAddress(issue.location)}
+          content={<div className="popup-text">{issue.tweet_content}</div>}
         />
       )
     })

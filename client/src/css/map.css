@@ -29,6 +29,7 @@
   transform: scale(1.6);
 }
 
-.popup {
-  height: 80px;
+.popup-text {
+  color: #5595CD !important;
+  text-align: left !important;
 }
