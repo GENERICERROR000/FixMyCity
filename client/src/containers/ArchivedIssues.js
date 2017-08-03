@@ -34,6 +34,7 @@ class Issues extends Component {
   render = () => {
     return (
       <div className="grid">
+        <h1 style={{color: "#267dc0"}}>Archived Issues</h1>
         <div className="filter">
           <FilterBar applyFilter={this.applyFilter} />
         </div>

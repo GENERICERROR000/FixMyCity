@@ -55,6 +55,7 @@ class BigMap extends Component {
   render() {
     return (
         <div className="map-grid">
+          <h1 style={{color: "#267dc0"}}>Map of Active Issues</h1>
           <div className="filter">
             <FilterBar applyFilter={this.applyFilter} />
           </div>
