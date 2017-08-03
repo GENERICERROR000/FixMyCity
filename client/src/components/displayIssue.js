@@ -55,7 +55,7 @@ class MoreInfo extends Component {
   }
 
   updateIssue = () => {
-    this.props.updateIssue(this.props.data._id, this.state.issue)
+    this.props.updateIssue(this.props.data._id, this.props.data.index, this.state.issue)
     this.cancel()
   }
 

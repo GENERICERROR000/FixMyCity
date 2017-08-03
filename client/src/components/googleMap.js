@@ -26,9 +26,15 @@ class GoogleMap extends Component {
   componentWillReceiveProps = (nextProps) => {
     if (this.props.data.location.coordinates[0] !== nextProps.data.location.coordinates[0]) {
       geocoder.reverseGeocode(nextProps.data.location.coordinates[0], nextProps.data.location.coordinates[1], (err, data) => {
-        this.setState({
-          address: data.results[0].formatted_address
-        })
+          if (!data.results[0]) {
+            this.setState({
+              address: "This geo location does not have a real address"
+            })
+          } else {
+            this.setState({
+              address: data.results[0].formatted_address
+            })
+          }
       })
     }
   }
