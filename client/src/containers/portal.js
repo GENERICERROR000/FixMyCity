@@ -11,6 +11,7 @@ const Portal = () => {
         <Link to='/issues/active'><Button className="portal-button">Active Issues</Button></Link>
         <Link to='/issues/archive'><Button className="portal-button">Archived Issues</Button></Link>
         <Link to='/issues/create'><Button className="portal-button">Create Issue</Button></Link>
+        <Link to='/issues/map'><Button className="portal-button">Map</Button></Link>
         <Link to='/data'><Button className="portal-button">Generate Report</Button></Link>
       </div>
     </div>

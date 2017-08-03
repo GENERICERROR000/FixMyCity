@@ -1,0 +1,34 @@
+.map-grid {
+  color: #5595CD;
+  display: grid;
+  grid-gap: 15px;
+	grid-template-columns: 25% 75%;
+  margin: 2em 3em 2em 2em;
+  overflow: hidden;
+}
+
+.filter {
+  grid-column: 1 / -1;
+  margin-bottom: 1%;
+}
+
+.big-map {
+  text-align: center;
+  margin-top: 11px;
+  width: 100vw;
+  height: 75vh;
+}
+
+.marker {
+  height: 30px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.marker:hover {
+  transform: scale(1.6);
+}
+
+.popup {
+  height: 80px;
+}
