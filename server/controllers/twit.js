@@ -12,7 +12,7 @@ module.exports = () => {
   })
 
   // Start Listening To Twitter Stream
-  const stream = Twitter.stream('statuses/filter', {track: '#FixMyCity'})
+  const stream = Twitter.stream('statuses/filter', {track: ['#FixMyCity', '#fixmycity', '#fmc', '#FMC']})
 
   // Set Action For New Tweet
   stream.on('tweet', (tweet) => {
